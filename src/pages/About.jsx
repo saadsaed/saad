@@ -4,17 +4,18 @@ import { supabase } from '../lib/supabase';
 
 export default function About() {
   const [data, setData] = useState({
-    biography: 'I am Saad Saeed, a passionate software developer specializing in AI integrations, autonomous agent pipelines, and high-performance React frontends.',
+    biography: 'Computer Science student with hands-on project experience in AI automation, workflow development, API integration, and Python scripting. Built end-to-end automation projects using Make.com, n8n, Gemini AI, WhatsApp Business API, and REST APIs. Experienced in web scraping, AI-based data extraction, content automation, and structured data handling. Seeking an entry-level or internship opportunity in AI Automation, Python Automation, or Workflow Automation.',
     location: 'Lahore, Pakistan',
     education: [
-      { degree: 'BS Computer Science', school: 'FAST NUCES', year: '2020-2024' }
+      { degree: 'BS Computer Science', school: 'THE SUPERIOR UNIVERSITY', year: '2023 – PRESENT' }
     ],
     experience: [
-      { role: 'AI Integration Engineer', company: 'Saasify', year: '2024 - Present' }
+      { role: 'AI Automation & Workflow Developer', company: 'Freelance / Projects', year: '2023 - Present' }
     ],
     stats: [
-      { label: 'Projects Completed', value: '25+' },
-      { label: 'Workflows Automated', value: '50+' }
+      { label: 'Projects Completed', value: '10+' },
+      { label: 'Automations Built', value: '25+' },
+      { label: 'APIs Integrated', value: '15+' }
     ]
   });
 

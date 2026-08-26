@@ -3,7 +3,30 @@ import { ArrowUpRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export default function Automation() {
-  const [automations, setAutomations] = useState([]);
+  const [automations, setAutomations] = useState([
+    {
+      id: 'a1111111-1111-1111-1111-111111111111',
+      name: 'AI-Powered Social Media Automation',
+      description: 'Make.com · Python · AI · REST APIs',
+      problem: 'Content publishing across multiple social channels takes hours of manual effort.',
+      solution: 'Automated caption generation and media publishing across Facebook, Instagram, and LinkedIn.',
+      trigger_type: 'Schedule/Webhook',
+      ai_model: 'Gemini / OpenAI',
+      result: 'Instant cross-channel publishing',
+      demo_url: 'https://make.com'
+    },
+    {
+      id: 'a2222222-2222-2222-2222-222222222222',
+      name: 'AI-Driven WhatsApp Order & Lead Capture',
+      description: 'n8n · Gemini AI · WhatsApp Business API',
+      problem: 'Unstructured customer chat leads require manual sorting and entry.',
+      solution: 'Gemini AI extracts names, emails, and requirements into structured JSON and logs to CSV.',
+      trigger_type: 'WhatsApp Message',
+      ai_model: 'Gemini AI',
+      result: '100% automated lead logging',
+      demo_url: 'https://n8n.io'
+    }
+  ]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -20,18 +20,19 @@ const DynamicIcon = ({ name, ...props }) => {
 export default function Home() {
   const [content, setContent] = useState({
     hero_subtitle: '01 / Introduction',
-    hero_heading: 'Building Intelligent Systems & Modern Interfaces.',
-    hero_description: 'I am a specialized developer automating workflows, deploying agents, and crafting custom React platforms. I bridge the gap between AI automation and high-end frontend systems.',
+    hero_heading: 'AI AUTOMATION & WORKFLOW DEVELOPER',
+    hero_description: 'Computer Science student with hands-on project experience in AI automation, workflow development, API integration, and Python scripting. Seeking an entry-level or internship opportunity in AI Automation, Python Automation, or Workflow Automation.',
     cta_1_label: 'Explore Work',
     cta_1_url: '/work',
     cta_2_label: 'Get in touch',
     cta_2_url: '/contact',
-    intro_text: 'I build custom integrations that connect business applications directly to automated LLM reasoning loops.'
+    intro_text: 'I design and build autonomous pipelines connecting webhooks, APIs, and LLMs for auto-enrichment, qualification, and routing.'
   });
   
   const [services, setServices] = useState([
-    { id: '1', title: 'AI Agents & Workflows', short_desc: 'Design autonomous pipelines connecting lead capturing systems to LLMs for auto-enrichment, qualification, and routing.' },
-    { id: '2', title: 'React & Web Development', short_desc: 'Create fast, highly interactive user experiences styled with modern design tokens and cinematic page flow animations.' }
+    { id: '1', title: 'AI Automation & Workflows', short_desc: 'Design autonomous pipelines connecting lead capturing systems to LLMs using n8n and Make.com.', icon_name: 'Cpu' },
+    { id: '2', title: 'API Integration', short_desc: 'Connect REST APIs, Webhooks, WhatsApp Business API, and structured data pipelines.', icon_name: 'Briefcase' },
+    { id: '3', title: 'Data & Web Scraping', short_desc: 'Extract and parse web data into structured JSON or CSV format using BeautifulSoup.', icon_name: 'Terminal' }
   ]);
 
   const [projects, setProjects] = useState([]);

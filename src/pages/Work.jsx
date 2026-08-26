@@ -3,7 +3,24 @@ import { ArrowUpRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export default function Work() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState([
+    {
+      id: 'p1111111-1111-1111-1111-111111111111',
+      title: 'AI-Powered Social Media Automation',
+      short_desc: 'Built an end-to-end workflow to automate content publishing across Facebook, Instagram, and LinkedIn. Integrated AI-powered caption generation to create platform-specific content and developed web-fetching components to process image data from source URLs.',
+      category: 'Make.com · Python · AI · REST APIs',
+      github_url: 'https://github.com/saadsaed',
+      live_url: 'https://github.com/saadsaed'
+    },
+    {
+      id: 'p2222222-2222-2222-2222-222222222222',
+      title: 'AI-Driven WhatsApp Order & Lead Capture',
+      short_desc: 'Built an automated WhatsApp workflow for customer order and lead information capture. Integrated Gemini AI to extract names, contact details, order requirements, and converted info into structured JSON.',
+      category: 'n8n · Gemini AI · WhatsApp Business API',
+      github_url: 'https://github.com/saadsaed',
+      live_url: 'https://github.com/saadsaed'
+    }
+  ]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

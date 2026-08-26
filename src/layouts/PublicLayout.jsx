@@ -32,7 +32,7 @@ export default function PublicLayout() {
       <div className="container mx-auto max-w-5xl flex-1 flex flex-col border-x border-neutral-900/10 px-0">
         
         {/* Header / Navbar */}
-        <header className="w-full bg-white">
+        <header className="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-neutral-900/5">
           <div className="h-20 flex items-center justify-between px-6 sm:px-12">
             <Link 
               to="/" 
