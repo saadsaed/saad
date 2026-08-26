@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Briefcase, GraduationCap } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export default function About() {
@@ -49,120 +48,97 @@ export default function About() {
     loadAbout();
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 15 } }
-  };
-
   if (loading) {
     return (
-      <div className="container mx-auto max-w-6xl px-6 py-24 animate-pulse">
+      <div className="w-full flex-1 flex flex-col justify-center items-center py-24 animate-pulse">
         <div className="h-6 w-32 bg-neutral-200 rounded mb-4" />
-        <div className="h-12 w-2/3 bg-neutral-200 rounded mb-8" />
-        <div className="h-48 bg-neutral-150 rounded" />
+        <div className="h-10 w-2/3 bg-neutral-200 rounded" />
       </div>
     );
   }
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
-      className="container mx-auto max-w-6xl px-6 py-12 md:py-24 flex flex-col gap-16 md:gap-24"
-    >
-      {/* Bio section */}
-      <motion.section variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div className="lg:col-span-1 flex flex-col gap-4">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-600">
-            <span>01 / Biography</span>
-            <span className="w-12 h-[1px] bg-neutral-300" />
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-neutral-900 tracking-tight leading-none">
-            About Me
-          </h1>
-          <div className="flex items-center gap-2 text-sm text-neutral-500 font-sans mt-2">
-            <MapPin size={16} />
+    <div className="w-full flex flex-col bg-white">
+      {/* 01 // Biography Header Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">01 / Biography</span>
+          <h1 className="text-xl font-bold uppercase mt-4 text-neutral-950 tracking-tight">About Me</h1>
+          <div className="flex items-center gap-1.5 text-xs text-neutral-500 font-bold uppercase mt-3 tracking-wider">
+            <MapPin size={14} className="text-neutral-400" />
             <span>{data.location}</span>
           </div>
         </div>
-        <div className="lg:col-span-2 flex flex-col gap-6">
-          <p className="text-lg text-neutral-600 leading-relaxed font-sans">
+        <div className="lg:col-span-8 p-6 sm:p-12 dot-grid flex flex-col gap-8">
+          <p className="text-lg text-neutral-800 leading-relaxed max-w-2xl">
             {data.biography}
           </p>
-
-          {/* Stats grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 border-t border-neutral-100 pt-8 mt-4">
-            {data.stats.map((stat, index) => (
-              <div key={index} className="flex flex-col gap-1 border-l border-neutral-200 pl-4">
-                <span className="text-3xl font-bold font-display text-neutral-900">{stat.value}</span>
-                <span className="text-xs font-semibold text-neutral-450 uppercase tracking-wider">{stat.label}</span>
+          
+          {/* Stats Display */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 border-t border-neutral-900/10 pt-8 max-w-xl">
+            {data.stats.map((stat, idx) => (
+              <div key={idx} className="flex flex-col">
+                <span className="text-2xl font-bold text-neutral-950 tracking-tight">{stat.value}</span>
+                <span className="text-[9px] font-bold text-neutral-450 uppercase tracking-widest mt-1">{stat.label}</span>
               </div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </div>
 
-      {/* Experience & Education splits */}
-      <motion.section variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-16 border-t border-neutral-200 pt-16">
-        {/* Career Experience Timeline */}
-        <div className="flex flex-col gap-8">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-neutral-50 border border-neutral-150 rounded-lg text-neutral-600">
-              <Briefcase size={20} />
-            </div>
-            <h2 className="text-xl font-bold font-display text-neutral-900">Professional Experience</h2>
-          </div>
-
+      {/* 02 // Journey (Career Experience) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">02 / Journey</span>
+          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Experience</h2>
+        </div>
+        <div className="lg:col-span-8 p-6 sm:p-12 flex flex-col divide-y divide-dashed divide-neutral-900/10">
           {data.experience.length === 0 ? (
-            <p className="text-sm text-neutral-500 font-sans">No career events configured.</p>
+            <div className="text-xs font-semibold text-neutral-400 uppercase">No career records configured.</div>
           ) : (
-            <div className="flex flex-col gap-6 border-l border-neutral-200 pl-6 ml-4">
-              {data.experience.map((exp, index) => (
-                <div key={index} className="relative flex flex-col gap-1">
-                  <div className="absolute -left-[31px] top-1.5 w-2 h-2 rounded-full bg-neutral-900 border-2 border-white ring-4 ring-neutral-50" />
-                  <span className="text-xs font-semibold text-accent-600 font-sans">{exp.year}</span>
-                  <h4 className="font-bold text-neutral-900">{exp.role}</h4>
-                  <span className="text-sm text-neutral-500 font-sans">{exp.company}</span>
+            data.experience.map((exp, idx) => (
+              <div key={idx} className="py-8 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                <div>
+                  <span className="text-[9px] font-bold text-neutral-450 uppercase tracking-wider">{exp.year}</span>
+                  <h4 className="text-md font-bold uppercase text-neutral-950 mt-1.5 tracking-tight">{exp.role}</h4>
+                  <p className="text-xs text-neutral-500 font-semibold uppercase mt-0.5 tracking-wider">{exp.company}</p>
                 </div>
-              ))}
-            </div>
+                
+                {/* Active/Past badge */}
+                <span className="px-3 py-1.5 border border-neutral-200 text-[9px] font-bold rounded-full uppercase tracking-wider text-neutral-600 self-start bg-neutral-50">
+                  {idx === 0 ? 'Active' : 'Past'}
+                </span>
+              </div>
+            ))
           )}
         </div>
+      </div>
 
-        {/* Education Timeline */}
-        <div className="flex flex-col gap-8">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-neutral-50 border border-neutral-150 rounded-lg text-neutral-600">
-              <GraduationCap size={20} />
-            </div>
-            <h2 className="text-xl font-bold font-display text-neutral-900">Education Timeline</h2>
-          </div>
-
+      {/* 03 // Credentials (Education) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">03 / Education</span>
+          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Credentials</h2>
+        </div>
+        <div className="lg:col-span-8 p-6 sm:p-12">
           {data.education.length === 0 ? (
-            <p className="text-sm text-neutral-500 font-sans">No education details configured.</p>
+            <div className="text-xs font-semibold text-neutral-400 uppercase">No education records found.</div>
           ) : (
-            <div className="flex flex-col gap-6 border-l border-neutral-200 pl-6 ml-4">
-              {data.education.map((edu, index) => (
-                <div key={index} className="relative flex flex-col gap-1">
-                  <div className="absolute -left-[31px] top-1.5 w-2 h-2 rounded-full bg-neutral-900 border-2 border-white ring-4 ring-neutral-50" />
-                  <span className="text-xs font-semibold text-accent-600 font-sans">{edu.year}</span>
-                  <h4 className="font-bold text-neutral-900">{edu.degree}</h4>
-                  <span className="text-sm text-neutral-500 font-sans">{edu.school}</span>
+            <div className="relative border-l border-neutral-900/10 ml-3 pl-8 flex flex-col gap-10 py-2">
+              {data.education.map((edu, idx) => (
+                <div key={idx} className="relative flex flex-col">
+                  {/* Timeline circular node */}
+                  <span className="absolute -left-[38px] top-1.5 w-3 h-3 rounded-full bg-neutral-950 border border-white" />
+                  
+                  <span className="text-[9px] font-bold text-neutral-450 uppercase tracking-wider">{edu.year}</span>
+                  <h4 className="text-md font-bold uppercase text-neutral-950 mt-1.5 tracking-tight">{edu.degree}</h4>
+                  <p className="text-xs text-neutral-500 font-semibold uppercase mt-0.5 tracking-wider">{edu.school}</p>
                 </div>
               ))}
             </div>
           )}
         </div>
-      </motion.section>
-    </motion.div>
+      </div>
+    </div>
   );
 }

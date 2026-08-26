@@ -27,51 +27,98 @@ export default function PublicLayout() {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900 flex flex-col font-sans relative selection:bg-accent-600 selection:text-white">
-      {/* Background grid lines for handcrafted look */}
-      <div className="absolute inset-0 grid-lines pointer-events-none z-0 opacity-[0.4]" />
-
-      {/* Dynamic Header / Navbar */}
-      <header className="sticky top-0 z-40 w-full border-b border-neutral-200/60 bg-neutral-50/70 backdrop-blur-md">
-        <div className="container mx-auto max-w-6xl h-16 flex items-center justify-between px-6">
-          <Link 
-            to="/" 
-            className="font-display font-bold tracking-tight text-neutral-900 hover:text-accent-600 transition-colors flex items-center gap-1.5"
-          >
-            <span>SAAD SAEED</span>
-            <span className="w-1.5 h-1.5 bg-accent-600 rounded-full inline-block animate-pulse" />
-          </Link>
-
-          {/* Desktop Nav links */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link, idx) => (
-              <Link
-                key={idx}
-                to={link.path}
-                className="text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors relative py-1 group"
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-neutral-900 transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
+    <div className="min-h-screen bg-white text-neutral-900 flex flex-col font-sans relative selection:bg-accent-600 selection:text-white">
+      {/* Centered Content Frame with border-x */}
+      <div className="container mx-auto max-w-5xl flex-1 flex flex-col border-x border-neutral-900/10 px-0">
+        
+        {/* Header / Navbar */}
+        <header className="w-full bg-white">
+          <div className="h-20 flex items-center justify-between px-6 sm:px-12">
             <Link 
-              to="/contact" 
-              className="text-xs font-semibold uppercase tracking-wider bg-neutral-900 text-white px-4 py-2 hover:bg-neutral-800 transition-colors inline-flex items-center gap-1"
+              to="/" 
+              className="text-lg font-bold tracking-tight text-neutral-950 hover:opacity-80 transition-opacity uppercase"
             >
-              Let's Talk
-              <ArrowUpRight size={12} />
+              SAAD SAEED
             </Link>
-          </nav>
 
-          {/* Hamburger */}
-          <button 
-            onClick={() => setMobileMenuOpen(true)}
-            className="md:hidden text-neutral-600 hover:text-neutral-900 transition-colors"
-          >
-            <Menu size={22} />
-          </button>
-        </div>
-      </header>
+            {/* Desktop Nav links */}
+            <nav className="hidden md:flex items-center gap-8">
+              {navLinks.map((link, idx) => (
+                <Link
+                  key={idx}
+                  to={link.path}
+                  className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-neutral-950 transition-colors relative py-1"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              
+              {/* Premium Gradient sliding button */}
+              <Link 
+                to="/contact" 
+                className="relative p-[1px] overflow-hidden rounded-full group inline-block focus:outline-none"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-violet-500 via-amber-400 to-violet-500 rounded-full" />
+                <span className="relative block px-5 py-2 bg-neutral-950 text-white hover:bg-neutral-900 text-[10px] font-bold rounded-full uppercase tracking-wider transition-colors">
+                  Get in touch
+                </span>
+              </Link>
+            </nav>
+
+            {/* Hamburger */}
+            <button 
+              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden text-neutral-600 hover:text-neutral-950 transition-colors"
+            >
+              <Menu size={22} />
+            </button>
+          </div>
+        </header>
+
+        {/* Blueprint Divider Spacer */}
+        <div className="divider-block" />
+
+        {/* Main Workspace with Page Transition */}
+        <main className="flex-1 bg-white flex flex-col">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-full flex-1 flex flex-col"
+            >
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
+        </main>
+
+        {/* Blueprint Divider Spacer */}
+        <div className="divider-block" />
+
+        {/* Public Footer */}
+        <footer className="py-12 bg-white px-6 sm:px-12 text-[11px] text-neutral-500 font-medium">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+              <span className="text-neutral-950 font-bold uppercase">&copy; {new Date().getFullYear()} SAAD SAEED.</span>
+              <span className="hidden md:inline text-neutral-200">|</span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full inline-block animate-pulse" />
+                AVAILABLE FOR NEW ROLES
+              </span>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              <span>LOCAL TIME: {timeString}</span>
+              <span className="text-neutral-200">|</span>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-950 uppercase transition-colors">GITHUB</a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-950 uppercase transition-colors">LINKEDIN</a>
+            </div>
+          </div>
+        </footer>
+
+      </div>
 
       {/* Mobile Drawer Menu */}
       <AnimatePresence>
@@ -93,8 +140,8 @@ export default function PublicLayout() {
             >
               <div className="flex flex-col gap-8">
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-neutral-900">SAAD SAEED</span>
-                  <button onClick={() => setMobileMenuOpen(false)} className="text-neutral-500 hover:text-neutral-900">
+                  <span className="font-bold text-neutral-950 uppercase tracking-tight">SAAD SAEED</span>
+                  <button onClick={() => setMobileMenuOpen(false)} className="text-neutral-500 hover:text-neutral-950">
                     <X size={22} />
                   </button>
                 </div>
@@ -104,7 +151,7 @@ export default function PublicLayout() {
                       key={idx}
                       to={link.path}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="text-lg font-medium text-neutral-800 hover:text-neutral-950"
+                      className="text-sm font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-950"
                     >
                       {link.label}
                     </Link>
@@ -116,7 +163,7 @@ export default function PublicLayout() {
                 <Link 
                   to="/contact" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center block bg-neutral-900 text-white py-3 rounded-md font-semibold text-sm hover:bg-neutral-800 transition-colors"
+                  className="w-full text-center block bg-neutral-950 text-white py-3 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-neutral-900 transition-colors"
                 >
                   Let's Talk
                 </Link>
@@ -125,42 +172,6 @@ export default function PublicLayout() {
           </>
         )}
       </AnimatePresence>
-
-      {/* Main Workspace with Page Transition Fade-In */}
-      <main className="flex-1 relative z-10 flex flex-col justify-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full flex-1 flex flex-col justify-center"
-          >
-            <Outlet />
-          </motion.div>
-        </AnimatePresence>
-      </main>
-
-      {/* Public Footer */}
-      <footer className="border-t border-neutral-200/80 py-8 relative z-10 bg-white">
-        <div className="container mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-medium">
-          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
-            <span className="text-neutral-900 font-bold">&copy; {new Date().getFullYear()} SAAD SAEED.</span>
-            <span className="hidden md:inline text-neutral-300">|</span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 bg-green-500 rounded-full inline-block animate-ping" />
-              AVAILABLE FOR NEW ROLES
-            </span>
-          </div>
-
-          <div className="flex items-center gap-6">
-            <span>GMT/UTC: {timeString}</span>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition-colors">GITHUB</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-900 transition-colors">LINKEDIN</a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

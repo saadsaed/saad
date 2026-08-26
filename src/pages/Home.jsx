@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, FolderGit, Cpu } from 'lucide-react';
-import * as Icons from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, Cpu, Briefcase, Sparkles, Terminal, Code } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import bannerImage from '../assets/hero_banner.jpg';
 
-// Helper component to render dynamic icons by string name
+const IconMap = {
+  Cpu,
+  Briefcase,
+  Sparkles,
+  Terminal,
+  Code
+};
+
 const DynamicIcon = ({ name, ...props }) => {
-  const Icon = Icons[name] || Cpu; // default to Cpu if icon not found
-  return <Icon {...props} />;
+  const IconComponent = IconMap[name] || Sparkles;
+  return <IconComponent {...props} />;
 };
 
 export default function Home() {
@@ -23,10 +30,12 @@ export default function Home() {
   });
   
   const [services, setServices] = useState([
-    { id: '1', title: 'AI Agents & Workflows', short_desc: 'Design autonomous pipelines connecting lead capturing systems to LLMs for auto-enrichment, qualification, and routing.', icon_name: 'Cpu' },
-    { id: '2', title: 'React & Web Development', short_desc: 'Create fast, highly interactive user experiences styled with modern design tokens and cinematic page flow animations.', icon_name: 'Briefcase' }
+    { id: '1', title: 'AI Agents & Workflows', short_desc: 'Design autonomous pipelines connecting lead capturing systems to LLMs for auto-enrichment, qualification, and routing.' },
+    { id: '2', title: 'React & Web Development', short_desc: 'Create fast, highly interactive user experiences styled with modern design tokens and cinematic page flow animations.' }
   ]);
 
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadPageData() {
@@ -51,129 +60,257 @@ export default function Home() {
         if (servicesRes && servicesRes.length > 0) {
           setServices(servicesRes);
         }
+
+        // Load projects
+        const { data: projectsRes } = await supabase
+          .from('projects')
+          .select('*')
+          .eq('is_published', true);
+
+        if (projectsRes && projectsRes.length > 0) {
+          setProjects(projectsRes);
+        }
       } catch (err) {
         console.error('Failed to load dynamic homepage content:', err);
+      } finally {
+        setLoading(false);
       }
     }
 
     loadPageData();
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  };
+  const featuredProjects = projects.filter(p => p.is_featured).slice(0, 2);
+  // If there are no explicitly featured projects, take the first two
+  const mainFeatured = featuredProjects.length > 0 ? featuredProjects : projects.slice(0, 2);
+  const sideProjects = projects.filter(p => !mainFeatured.includes(p));
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 15 } }
-  };
+  if (loading) {
+    return (
+      <div className="w-full flex-1 flex flex-col justify-center items-center py-24 animate-pulse">
+        <div className="h-48 w-full bg-neutral-100 mb-8" />
+        <div className="h-6 w-32 bg-neutral-200 rounded mb-4" />
+        <div className="h-10 w-2/3 bg-neutral-200 rounded" />
+      </div>
+    );
+  }
 
   return (
-    <motion.div 
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
-      className="container mx-auto max-w-6xl px-6 py-12 md:py-24 flex flex-col gap-24 md:gap-36"
-    >
-      {/* 01 // HERO SECTION */}
-      <motion.section variants={itemVariants} className="flex flex-col gap-6 max-w-3xl">
-        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-600">
-          <span>{content.hero_subtitle}</span>
-          <span className="w-12 h-[1px] bg-neutral-300" />
-        </div>
-        <h1 className="text-4xl sm:text-6xl font-display font-bold tracking-tight text-neutral-900 leading-[1.05]">
-          {content.hero_heading}
-        </h1>
-        <p className="text-lg text-neutral-600 leading-relaxed font-sans max-w-xl">
-          {content.hero_description}
-        </p>
-        <div className="flex gap-4 mt-2">
-          {content.cta_1_label && (
-            <a
-              href={content.cta_1_url || '/work'}
-              className="bg-neutral-900 hover:bg-neutral-800 text-white text-sm font-semibold px-6 py-3 rounded-xs transition-colors inline-flex items-center gap-2"
-            >
-              {content.cta_1_label}
-              <FolderGit size={16} />
-            </a>
-          )}
-          {content.cta_2_label && (
-            <a
-              href={content.cta_2_url || '/contact'}
-              className="border border-neutral-300 hover:bg-neutral-50 text-neutral-900 text-sm font-semibold px-6 py-3 rounded-xs transition-colors inline-flex items-center gap-2"
-            >
-              {content.cta_2_label}
-              <ArrowUpRight size={16} />
-            </a>
-          )}
-        </div>
-      </motion.section>
+    <div className="w-full flex flex-col bg-white">
+      {/* Cover Banner Illustration */}
+      <div className="w-full h-48 sm:h-72 overflow-hidden bg-neutral-100">
+        <img 
+          src={bannerImage} 
+          className="w-full h-full object-cover filter brightness-[0.98]" 
+          alt="Misty Mountains Ink Landscape" 
+        />
+      </div>
 
-      {/* 02 // SERVICES GRID */}
-      <motion.section variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-12 border-t border-neutral-200/80 pt-12">
-        <div className="lg:col-span-1 flex flex-col gap-4">
-          <span className="text-xs font-semibold uppercase tracking-widest text-accent-600">02 / Expertise</span>
-          <h2 className="text-2xl font-display font-bold text-neutral-900">What I Solve.</h2>
-          <p className="text-sm text-neutral-500 max-w-sm">
-            {content.intro_text}
+      {/* Profile Overlap Info Area */}
+      <div className="relative px-6 sm:px-12 pb-12 border-b border-neutral-900/10">
+        <div className="relative -mt-16 sm:-mt-24 mb-6 inline-block">
+          <img 
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80" 
+            className="w-32 h-32 sm:w-44 sm:h-44 rounded-full border-4 border-white object-cover shadow-sm bg-white" 
+            alt="Saad Saeed"
+          />
+          {/* Online green indicator dot */}
+          <span className="absolute bottom-3 right-3 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white animate-pulse" />
+        </div>
+        
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight text-neutral-950 uppercase">
+              Saad Saeed
+            </h1>
+            <p className="text-xs font-bold text-accent-600 uppercase mt-1.5 tracking-wider">
+              Software Developer & AI Integrator
+            </p>
+            <p className="text-[10px] text-neutral-400 font-bold uppercase mt-1 tracking-widest">
+              Lahore, Pakistan
+            </p>
+          </div>
+
+          {/* Call-to-actions */}
+          <div className="flex flex-wrap items-center gap-3">
+            <a 
+              href="https://github.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-4 py-2 border border-neutral-200 hover:border-neutral-950 text-[10px] font-bold rounded-full uppercase tracking-wider transition-colors"
+            >
+              Github
+            </a>
+            <a 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-4 py-2 border border-neutral-200 hover:border-neutral-950 text-[10px] font-bold rounded-full uppercase tracking-wider transition-colors"
+            >
+              LinkedIn
+            </a>
+            <Link 
+              to="/contact" 
+              className="px-5 py-2.5 bg-neutral-950 text-white hover:bg-neutral-900 text-[10px] font-bold rounded-full uppercase tracking-wider transition-colors"
+            >
+              Get in touch
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* 01 // Introduction (About bio) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">01 / Introduction</span>
+          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">About Me</h2>
+        </div>
+        <div className="lg:col-span-8 p-6 sm:p-12 dot-grid flex flex-col gap-6">
+          <p className="text-xl sm:text-2xl font-bold text-neutral-950 leading-[1.25] tracking-tight max-w-2xl">
+            Hey there. I'm Saad — a developer crafting digital automation pipelines and premium user interfaces.
+          </p>
+          <p className="text-sm text-neutral-500 leading-relaxed max-w-2xl">
+            {content.hero_description}
           </p>
         </div>
-        <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {services.map((service) => (
+      </div>
+
+      {/* 02 // Expertise (Services) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">02 / Expertise</span>
+          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Services</h2>
+        </div>
+        <div className="lg:col-span-8 p-6 sm:p-12 flex flex-col divide-y divide-dashed divide-neutral-900/10">
+          {services.map((service) => {
+            // Split the short description into separate bullets
+            const rawBullets = service.short_desc
+              ? service.short_desc.split(/(?:\. |, | and )/g).filter(b => b.trim().length > 10)
+              : [];
+            const bullets = rawBullets.length > 0 ? rawBullets : [service.short_desc];
+
+            return (
+              <div key={service.id} className="py-8 first:pt-0 last:pb-0 flex flex-col gap-3">
+                {/* Logo/Icon */}
+                <div className="text-neutral-950 w-8 h-8 flex items-center justify-start">
+                  <DynamicIcon name={service.icon_name} size={22} strokeWidth={1.5} />
+                </div>
+                
+                {/* Title & Badge */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-1">
+                  <h3 className="text-sm font-bold uppercase tracking-tight text-neutral-950">
+                    {service.title}
+                  </h3>
+                  
+                  {/* Status badge */}
+                  <span className="px-3 py-1.5 border border-neutral-200 text-[9px] font-bold rounded-full uppercase tracking-wider text-neutral-600 bg-neutral-50 flex items-center gap-1.5 self-start sm:self-auto">
+                    <span className="w-1.5 h-1.5 bg-neutral-950 rounded-full" />
+                    Core Service
+                  </span>
+                </div>
+
+                {/* Bullets List */}
+                <ul className="mt-3 flex flex-col gap-2 text-xs text-slate-550 font-medium tracking-wide">
+                  {bullets.map((bullet, bIdx) => (
+                    <li key={bIdx} className="flex items-start gap-2.5">
+                      <span className="text-neutral-300 select-none">•</span>
+                      <span className="first-letter:uppercase">{bullet.trim()}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 03 // Selected Works (Featured Work) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10 flex flex-col justify-between">
+          <div>
+            <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">03 / Selected Works</span>
+            <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Featured Work</h2>
+          </div>
+          <Link 
+            to="/work"
+            className="group inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-neutral-950 hover:opacity-85 transition-opacity mt-8 lg:mt-0"
+          >
+            View all projects
+            <ArrowUpRight size={14} className="arrow-hover-icon" />
+          </Link>
+        </div>
+        
+        <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 divide-neutral-900/10">
+          {mainFeatured.map((project, idx) => (
             <div 
-              key={service.id} 
-              className="border border-neutral-200 p-6 bg-white hover:border-neutral-950 transition-colors flex flex-col gap-4"
+              key={project.id} 
+              className={`p-6 sm:p-12 flex flex-col justify-between h-[360px] ${idx === 1 ? 'sm:border-l border-neutral-900/10' : ''}`}
             >
-              <DynamicIcon name={service.icon_name} className="text-accent-600" size={24} />
-              <h3 className="font-bold text-neutral-900">{service.title}</h3>
-              <p className="text-sm text-neutral-500 leading-relaxed">
-                {service.short_desc}
-              </p>
+              <div>
+                <span className="text-[9px] font-bold text-neutral-450 uppercase tracking-wider">{project.category || 'CASE STUDY'}</span>
+                <h3 className="text-md font-bold uppercase tracking-tight text-neutral-950 mt-3 hover:text-accent-600 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-xs text-neutral-500 mt-2.5 leading-relaxed line-clamp-5">
+                  {project.short_desc}
+                </p>
+              </div>
+              
+              <div className="flex items-center justify-between border-t border-neutral-100 pt-4">
+                <span className="text-[9px] font-bold text-neutral-400 uppercase tracking-widest">Active</span>
+                <a 
+                  href={project.live_url || project.github_url || '#'} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-neutral-950 hover:opacity-80 transition-opacity"
+                >
+                  Explore 
+                  <ArrowUpRight size={12} className="arrow-hover-icon" />
+                </a>
+              </div>
             </div>
           ))}
         </div>
-      </motion.section>
+      </div>
 
-      {/* 03 // TECHNICAL BLUEPRINT PREVIEW */}
-      <motion.section variants={itemVariants} className="border-t border-neutral-200/80 pt-12 flex flex-col gap-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex flex-col gap-2">
-            <span className="text-xs font-semibold uppercase tracking-widest text-accent-600">03 / Blueprints</span>
-            <h2 className="text-2xl font-display font-bold text-neutral-900">Automation Blueprints</h2>
-          </div>
-          <span className="text-xs font-medium text-neutral-400">CONNECTING APIS & REASONING AGENTS</span>
+      {/* 04 // Labs (Side Projects List) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">04 / Labs</span>
+          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Side Projects</h2>
         </div>
-
-        <div className="border border-neutral-200 rounded-lg p-6 bg-white overflow-x-auto">
-          <div className="min-w-[600px] flex items-center justify-between px-8 py-4 relative">
-            <div className="absolute top-1/2 left-0 right-0 h-[1.5px] bg-neutral-200 -translate-y-1/2 z-0" />
-            
-            <div className="z-10 bg-white border border-neutral-200 p-3 rounded-lg flex flex-col items-center gap-1 shadow-xs text-xs font-semibold">
-              <span className="text-neutral-400 uppercase text-[9px]">Trigger</span>
-              <span>Webhooks / Chat</span>
+        <div className="lg:col-span-8 divide-y divide-neutral-900/10">
+          {sideProjects.length === 0 ? (
+            <div className="p-6 sm:p-12 text-neutral-400 text-xs font-semibold uppercase tracking-wider">
+              Additional modules coming soon.
             </div>
-
-            <div className="z-10 bg-accent-600 text-white p-3 rounded-lg flex flex-col items-center gap-1 shadow-xs text-xs font-semibold">
-              <span className="text-accent-100 uppercase text-[9px]">n8n / Flow</span>
-              <span>Enrichment & Rules</span>
-            </div>
-
-            <div className="z-10 bg-white border border-neutral-200 p-3 rounded-lg flex flex-col items-center gap-1 shadow-xs text-xs font-semibold">
-              <span className="text-neutral-400 uppercase text-[9px]">Agent</span>
-              <span>GPT-4 / Claude</span>
-            </div>
-
-            <div className="z-10 bg-white border border-neutral-950 p-3 rounded-lg flex flex-col items-center gap-1 shadow-xs text-xs font-semibold">
-              <span className="text-accent-600 uppercase text-[9px]">Action</span>
-              <span>CRM Sync / Notify</span>
-            </div>
-          </div>
+          ) : (
+            sideProjects.map((project) => (
+              <a 
+                key={project.id} 
+                href={project.live_url || project.github_url || '#'}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group p-6 sm:p-8 flex items-center justify-between hover:bg-neutral-50 transition-colors"
+              >
+                <div>
+                  <h4 className="text-sm font-bold uppercase tracking-tight text-neutral-950 group-hover:text-accent-600 transition-colors">
+                    {project.title}
+                  </h4>
+                  <p className="text-[9px] text-neutral-450 mt-1 uppercase font-bold tracking-wider">{project.category || 'Utility Lab'}</p>
+                </div>
+                
+                <div className="flex items-center gap-3">
+                  <span className="text-[9px] font-bold text-neutral-400 uppercase tracking-widest">
+                    Code
+                  </span>
+                  <ArrowUpRight size={14} className="arrow-hover-icon text-neutral-450 group-hover:text-neutral-950 transition-transform" />
+                </div>
+              </a>
+            ))
+          )}
         </div>
-      </motion.section>
-    </motion.div>
+      </div>
+    </div>
   );
 }

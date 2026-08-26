@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Cpu, Zap, Award, ArrowUpRight, Play } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export default function Automation() {
@@ -26,95 +25,75 @@ export default function Automation() {
     loadAutomations();
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 15 } }
-  };
+  if (loading) {
+    return (
+      <div className="w-full flex-1 flex flex-col justify-center items-center py-24 animate-pulse">
+        <div className="h-6 w-32 bg-neutral-200 rounded mb-4" />
+        <div className="h-10 w-2/3 bg-neutral-200 rounded" />
+      </div>
+    );
+  }
 
   return (
-    <div className="container mx-auto max-w-6xl px-6 py-12 md:py-24">
-      <div className="flex flex-col gap-4 mb-16 max-w-2xl">
-        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-600">
-          <span>AI Agents & n8n</span>
-          <span className="w-12 h-[1px] bg-neutral-300" />
+    <div className="w-full flex flex-col bg-white">
+      {/* Title Header Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">AI Agents & n8n</span>
+          <h1 className="text-xl font-bold uppercase mt-4 text-neutral-950 tracking-tight">Automations</h1>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-display font-bold text-neutral-900 tracking-tight leading-none">
-          Autonomous Pipelines
-        </h1>
-        <p className="text-neutral-500 font-sans mt-2">
-          Automating enterprise integrations, connecting CRM fields, webhooks, and custom vector search agents to custom frontends.
-        </p>
+        <div className="lg:col-span-8 p-6 sm:p-12 flex flex-col justify-center">
+          <p className="text-sm text-neutral-500 leading-relaxed max-w-xl">
+            Automating enterprise integrations, connecting CRM fields, webhooks, and custom vector search agents to custom frontends.
+          </p>
+        </div>
       </div>
 
-      {loading ? (
-        <div className="flex flex-col gap-8">
-          {[...Array(2)].map((_, i) => (
-            <div key={i} className="h-64 bg-neutral-100 border border-neutral-250 rounded-lg animate-pulse" />
-          ))}
-        </div>
-      ) : automations.length === 0 ? (
-        <div className="text-center py-24 border border-dashed border-neutral-200 rounded-lg bg-neutral-50/50">
-          <p className="text-neutral-500 font-medium">No automation pipelines are currently active. Check back later!</p>
+      {/* Automations Pipelines List */}
+      {automations.length === 0 ? (
+        <div className="p-12 text-center text-xs font-semibold uppercase tracking-wider text-neutral-450">
+          No automation pipelines are currently active. Check back later!
         </div>
       ) : (
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col gap-12"
-        >
+        <div className="flex flex-col divide-y divide-neutral-900/10 border-b border-neutral-900/10">
           {automations.map((auto) => (
-            <motion.div
-              key={auto.id}
-              variants={itemVariants}
-              className="group border border-neutral-200 rounded-lg bg-white overflow-hidden p-8 shadow-xs flex flex-col gap-6 hover:border-neutral-950 transition-colors"
+            <div 
+              key={auto.id} 
+              className="p-6 sm:p-12 flex flex-col gap-6 bg-white hover:bg-neutral-50/50 transition-colors"
             >
               <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-neutral-100 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 bg-neutral-50 border border-neutral-150 rounded-lg text-neutral-600">
-                    <Cpu size={22} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold font-display text-neutral-900 group-hover:text-accent-600 transition-colors">
-                      {auto.name}
-                    </h3>
-                    <p className="text-xs text-neutral-400 font-sans mt-0.5">{auto.description}</p>
-                  </div>
+                <div>
+                  <h3 className="text-md font-bold uppercase tracking-tight text-neutral-950">
+                    {auto.name}
+                  </h3>
+                  <p className="text-xs text-neutral-500 mt-1 leading-relaxed">{auto.description}</p>
                 </div>
 
-                <div className="flex gap-3 text-xs font-mono font-medium">
+                <div className="flex gap-2 text-[9px] font-bold uppercase tracking-wider">
                   {auto.trigger_type && (
-                    <span className="px-2.5 py-1 bg-neutral-50 border border-neutral-150 text-neutral-600 rounded">
+                    <span className="px-2.5 py-1 bg-neutral-50 border border-neutral-200 text-neutral-600 rounded-full">
                       Trigger: {auto.trigger_type}
                     </span>
                   )}
                   {auto.ai_model && (
-                    <span className="px-2.5 py-1 bg-neutral-50 border border-neutral-150 text-neutral-600 rounded">
+                    <span className="px-2.5 py-1 bg-neutral-50 border border-neutral-200 text-neutral-600 rounded-full">
                       Model: {auto.ai_model}
                     </span>
                   )}
                 </div>
               </div>
 
-              {/* Problem/Solution side-by-side */}
+              {/* Problem/Solution side-by-side splits */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-2">
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-red-500">The Problem</span>
-                  <p className="text-sm text-neutral-600 leading-relaxed font-sans">
+                <div className="flex flex-col gap-1.5">
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-red-500">The Problem</span>
+                  <p className="text-xs text-neutral-600 leading-relaxed">
                     {auto.problem}
                   </p>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-green-600">The Automation</span>
-                  <p className="text-sm text-neutral-600 leading-relaxed font-sans">
+                <div className="flex flex-col gap-1.5">
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-emerald-600">The Automation</span>
+                  <p className="text-xs text-neutral-600 leading-relaxed">
                     {auto.solution}
                   </p>
                 </div>
@@ -122,12 +101,10 @@ export default function Automation() {
 
               {/* Demo actions and results */}
               <div className="flex justify-between items-center border-t border-neutral-100 pt-4 mt-2">
-                <div className="flex items-center gap-2">
-                  <span className="p-1 bg-green-50 border border-green-200 text-green-700 rounded-full">
-                    <Zap size={14} />
-                  </span>
-                  <span className="text-xs font-semibold text-neutral-800">
-                    Result: <span className="font-bold text-neutral-900">{auto.result}</span>
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-800">
+                    Result: <span className="text-neutral-950 font-extrabold">{auto.result}</span>
                   </span>
                 </div>
 
@@ -136,16 +113,16 @@ export default function Automation() {
                     href={auto.demo_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 border border-neutral-300 rounded-md text-xs font-semibold hover:bg-neutral-50 transition-colors"
+                    className="group inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-neutral-950 hover:opacity-80 transition-opacity"
                   >
-                    <Play size={12} fill="currentColor" />
                     Watch Demo
+                    <ArrowUpRight size={14} className="arrow-hover-icon" />
                   </a>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       )}
     </div>
   );

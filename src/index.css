@@ -1,23 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-neutral-950: #0a0a0a;
-  --color-neutral-900: #121212;
-  --color-neutral-800: #1a1a1a;
-  --color-neutral-700: #2d2d2d;
+  --color-neutral-950: #000000;
+  --color-neutral-900: #0a0a0a;
+  --color-neutral-800: #171717;
+  --color-neutral-700: #262626;
+  --color-neutral-500: #737373;
   --color-neutral-400: #a3a3a3;
   --color-neutral-200: #e5e5e5;
   --color-neutral-100: #f5f5f5;
-  --color-neutral-50: #fafaf9;
+  --color-neutral-50: #ffffff;
   
-  --color-accent-600: #2c3a39; /* Tactical Muted Green */
-  --color-accent-100: #e8eceb;
+  --color-accent-600: #6d28d9; /* Typefolio Violet Accent */
+  --color-accent-100: #f3e8ff;
   
-  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui;
+  --font-sans: "Inter", ui-sans-serif, system-ui;
   --font-display: "Space Grotesk", sans-serif;
   
-  --radius-sm: 0px; /* Restrained sharp borders */
+  --radius-sm: 0px;
   --radius-md: 4px;
   --radius-lg: 8px;
 }
@@ -41,7 +42,7 @@
   }
 
   html, body {
-    @apply bg-neutral-50 text-neutral-900 antialiased overflow-x-hidden;
+    @apply bg-white text-neutral-900 antialiased overflow-x-hidden;
     font-family: var(--font-sans);
   }
 
@@ -54,21 +55,29 @@
     @apply bg-accent-600 text-white;
   }
 
-  /* Custom subtle focus states */
+  /* Focus states */
   input:focus, textarea:focus, select:focus {
     outline: none;
     @apply ring-2 ring-accent-600/20 border-accent-600;
   }
 }
 
-/* Custom Grid Utility for Handcrafted Look */
-.grid-lines {
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
+/* Custom dot-grid background utility */
+.dot-grid {
+  background-image: radial-gradient(rgba(10, 10, 10, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-.thin-border {
-  @apply border-neutral-200/80;
+/* Spacer block line styling */
+.divider-block {
+  @apply border-x border-b border-neutral-900/10 h-4 w-full bg-white;
+}
+
+/* Typefolio slide arrow */
+.arrow-hover-container:hover .arrow-hover-icon {
+  transform: translate(4px, -4px) rotate(45deg);
+}
+
+.arrow-hover-icon {
+  transition: transform 0.2s ease-in-out;
 }
