@@ -35,6 +35,7 @@ export default function Home() {
   ]);
 
   const [projects, setProjects] = useState([]);
+  const [profilePic, setProfilePic] = useState('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -69,6 +70,19 @@ export default function Home() {
 
         if (projectsRes && projectsRes.length > 0) {
           setProjects(projectsRes);
+        }
+
+        // Load profile picture from about_content
+        const { data: aboutRes } = await supabase
+          .from('about_content')
+          .select('*, profile_media:profile_media_id(*)')
+          .eq('id', true)
+          .single();
+
+        if (aboutRes && aboutRes.profile_media) {
+          const path = aboutRes.profile_media.storage_path;
+          const publicUrl = supabase.storage.from('media').getPublicUrl(path).data.publicUrl;
+          setProfilePic(publicUrl);
         }
       } catch (err) {
         console.error('Failed to load dynamic homepage content:', err);
@@ -110,7 +124,7 @@ export default function Home() {
       <div className="relative px-6 sm:px-12 pb-12 border-b border-neutral-900/10">
         <div className="relative -mt-16 sm:-mt-24 mb-6 inline-block">
           <img 
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80" 
+            src={profilePic} 
             className="w-32 h-32 sm:w-44 sm:h-44 rounded-full border-4 border-white object-cover shadow-sm bg-white" 
             alt="Saad Saeed"
           />

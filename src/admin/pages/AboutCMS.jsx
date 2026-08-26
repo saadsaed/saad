@@ -3,6 +3,7 @@ import { supabase } from '../../lib/supabase';
 import { useToast } from '../components/cms/ToastContext';
 import CMSFormInput from '../components/cms/CMSFormInput';
 import CMSButton from '../components/cms/CMSButton';
+import CMSMediaPicker from '../components/cms/CMSMediaPicker';
 import { Plus, Trash2 } from 'lucide-react';
 
 export default function AboutCMS() {
@@ -13,7 +14,8 @@ export default function AboutCMS() {
     location: '',
     education: [],
     experience: [],
-    stats: []
+    stats: [],
+    profile_media: null
   });
 
   const { toast } = useToast();
@@ -23,7 +25,7 @@ export default function AboutCMS() {
       try {
         const { data: res, error } = await supabase
           .from('about_content')
-          .select('*')
+          .select('*, profile_media:profile_media_id(*)')
           .eq('id', true)
           .single();
 
@@ -34,7 +36,8 @@ export default function AboutCMS() {
             location: res.location || '',
             education: Array.isArray(res.education) ? res.education : [],
             experience: Array.isArray(res.experience) ? res.experience : [],
-            stats: Array.isArray(res.stats) ? res.stats : []
+            stats: Array.isArray(res.stats) ? res.stats : [],
+            profile_media: res.profile_media || null
           });
         }
       } catch (err) {
@@ -53,7 +56,15 @@ export default function AboutCMS() {
     try {
       const { error } = await supabase
         .from('about_content')
-        .upsert({ id: true, ...data });
+        .upsert({ 
+          id: true, 
+          biography: data.biography,
+          location: data.location,
+          education: data.education,
+          experience: data.experience,
+          stats: data.stats,
+          profile_media_id: data.profile_media ? data.profile_media.id : null
+        });
 
       if (error) throw error;
       toast('About content updated successfully!', 'success');
@@ -153,6 +164,16 @@ export default function AboutCMS() {
       <p className="text-neutral-500 mb-6 text-sm">Update your biography, location, stats, education history, and career history.</p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <div className="border-b border-neutral-100 pb-6 max-w-xs">
+          <CMSMediaPicker
+            label="Profile Picture (DP)"
+            value={data.profile_media}
+            onChange={(media) => setData(prev => ({ ...prev, profile_media: media }))}
+            folder="profile"
+            aspectRatio="aspect-square"
+          />
+        </div>
+
         <CMSFormInput
           id="biography"
           label="Biography"
