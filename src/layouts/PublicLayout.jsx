@@ -112,8 +112,8 @@ export default function PublicLayout() {
             <div className="flex flex-wrap items-center justify-center gap-6">
               <span>LOCAL TIME: {timeString}</span>
               <span className="text-neutral-200">|</span>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-950 uppercase transition-colors">GITHUB</a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-950 uppercase transition-colors">LINKEDIN</a>
+              <a href="https://github.com/saadsaed" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-950 uppercase transition-colors">GITHUB</a>
+              <a href="https://linkedin.com/in/saadsaeed7" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-950 uppercase transition-colors">LINKEDIN</a>
             </div>
           </div>
         </footer>

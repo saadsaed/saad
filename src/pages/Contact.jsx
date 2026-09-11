@@ -4,10 +4,10 @@ import { supabase } from '../lib/supabase';
 export default function Contact() {
   const [data, setData] = useState({
     email: 'm.saadsaeed7223@gmail.com',
-    whatsapp: '+923004668808',
+    whatsapp: '+92 300 4668808',
     location: 'Lahore, Pakistan',
     contact_description: 'Let\'s collaborate on building smart interfaces and automated pipelines. Drop me a line below.',
-    cta_text: 'Get in touch'
+    cta_text: 'Contact Me'
   });
 
   const [loading, setLoading] = useState(true);

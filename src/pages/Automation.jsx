@@ -8,23 +8,23 @@ export default function Automation() {
       id: 'a1111111-1111-1111-1111-111111111111',
       name: 'AI-Powered Social Media Automation',
       description: 'Make.com · Python · AI · REST APIs',
-      problem: 'Content publishing across multiple social channels takes hours of manual effort.',
-      solution: 'Automated caption generation and media publishing across Facebook, Instagram, and LinkedIn.',
+      problem: 'Manual content creation and cross-channel posting is tedious and slow.',
+      solution: 'End-to-end automated pipeline to generate, format, schedule, and publish platform-specific content across multiple social media networks.',
       trigger_type: 'Schedule/Webhook',
-      ai_model: 'Gemini / OpenAI',
-      result: 'Instant cross-channel publishing',
-      demo_url: 'https://make.com'
+      ai_model: 'Gemini AI Engine',
+      result: 'Automated cross-platform publishing & AI captions',
+      demo_url: 'https://github.com/saadsaed'
     },
     {
       id: 'a2222222-2222-2222-2222-222222222222',
       name: 'AI-Driven WhatsApp Order & Lead Capture',
-      description: 'n8n · Gemini AI · WhatsApp Business API',
-      problem: 'Unstructured customer chat leads require manual sorting and entry.',
-      solution: 'Gemini AI extracts names, emails, and requirements into structured JSON and logs to CSV.',
+      description: 'n8n · Gemini AI · WhatsApp Business API · CSV/JSON',
+      problem: 'Unstructured customer chat leads require manual sorting and data entry.',
+      solution: 'Intelligent conversational capture system that parses unstructured customer messages into structured business data.',
       trigger_type: 'WhatsApp Message',
       ai_model: 'Gemini AI',
-      result: '100% automated lead logging',
-      demo_url: 'https://n8n.io'
+      result: 'Validated strict JSON & automated CSV sync',
+      demo_url: 'https://github.com/saadsaed'
     }
   ]);
   const [loading, setLoading] = useState(true);

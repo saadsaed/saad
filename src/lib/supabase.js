@@ -61,42 +61,29 @@ if (isMockMode) {
         if (table === 'projects') {
           defaults = [
             { 
-              id: '1', 
-              title: 'Saad Portfolio Website', 
-              slug: 'saad-portfolio',
-              short_desc: 'Cinematic portfolio built with React and TailwindCSS', 
-              full_desc: 'This is the comprehensive description of Saad\'s Portfolio site built with Vite, React, and CSS variables for theming.',
-              category: 'React & Frontend',
-              github_url: 'https://github.com/saadsaeed/portfolio',
-              live_url: 'https://saadsaeed.com',
+              id: 'p1111111-1111-1111-1111-111111111111', 
+              title: 'AI-Powered Social Media Automation', 
+              slug: 'ai-powered-social-media-automation',
+              short_desc: 'End-to-end automated pipeline to generate, format, schedule, and publish platform-specific content across multiple social media networks.', 
+              full_desc: 'Automated content publishing across Facebook, Instagram, and LinkedIn. Integrated AI-powered caption generation tailored for platform-specific tone and style. Built a web-fetching pipeline to retrieve, parse, and process image assets from source URLs.',
+              category: 'Make.com · Python · AI · REST APIs',
+              github_url: 'https://github.com/saadsaed',
+              live_url: 'https://github.com/saadsaed',
               is_published: true, 
               is_featured: true,
               updated_at: new Date().toISOString() 
             },
             { 
-              id: '2', 
-              title: 'Automated CRM Sync', 
-              slug: 'crm-sync',
-              short_desc: 'Automates lead enrichment and routing into HubSpot', 
-              full_desc: 'An automated flow connecting web forms, running the data through GPT-4, and updating CRM records.',
-              category: 'AI & Automation',
-              github_url: 'https://github.com/saadsaeed/crm-sync',
-              live_url: '',
+              id: 'p2222222-2222-2222-2222-222222222222', 
+              title: 'AI-Driven WhatsApp Order & Lead Capture', 
+              slug: 'ai-driven-whatsapp-order-lead-capture',
+              short_desc: 'Intelligent conversational capture system that parses unstructured customer messages into structured business data.', 
+              full_desc: 'Engineered an automated WhatsApp workflow for customer order capture and lead intake. Leveraged Gemini AI to extract customer names, contact info, and order requirements from natural language messages. Transformed unstructured customer replies into validated, strict JSON payloads.',
+              category: 'n8n · Gemini AI · WhatsApp Business API · CSV/JSON',
+              github_url: 'https://github.com/saadsaed',
+              live_url: 'https://github.com/saadsaed',
               is_published: true, 
               is_featured: true,
-              updated_at: new Date().toISOString() 
-            },
-            { 
-              id: '3', 
-              title: 'Vite Boilerplate', 
-              slug: 'vite-boilerplate',
-              short_desc: 'A robust template for kickstarting react apps.', 
-              full_desc: 'Clean configuration of tailwindcss, react-router, and hooks.',
-              category: 'Boilerplate',
-              github_url: 'https://github.com/saadsaeed/vite-boilerplate',
-              live_url: '',
-              is_published: false, 
-              is_featured: false,
               updated_at: new Date().toISOString() 
             },
           ];
@@ -104,14 +91,14 @@ if (isMockMode) {
           defaults = [
             {
               id: true,
-              hero_heading: 'Building Intelligent Systems & Modern Interfaces.',
+              hero_heading: 'AI AUTOMATION & WORKFLOW DEVELOPER',
               hero_subtitle: '01 / Introduction',
-              hero_description: 'I am a specialized developer automating workflows, deploying agents, and crafting custom React platforms. I bridge the gap between AI automation and high-end frontend systems.',
-              cta_1_label: 'Explore Work',
-              cta_1_url: '/work',
-              cta_2_label: 'Get in touch',
-              cta_2_url: '/contact',
-              intro_text: 'I build custom integrations that connect business applications directly to automated LLM reasoning loops.',
+              hero_description: 'Computer Science student specializing in AI automation, workflow orchestration, API integration, and Python scripting. Experienced in building automated pipelines with n8n, Make.com, Gemini AI, and REST APIs.',
+              cta_1_label: 'View Projects',
+              cta_1_url: '#projects',
+              cta_2_label: 'Download CV',
+              cta_2_url: '/Saad_Saeed_CV.pdf',
+              intro_text: 'Computer Science student specializing in AI automation, workflow orchestration, API integration, and Python scripting.',
               statistics: [],
               updated_at: new Date().toISOString()
             }
@@ -120,17 +107,18 @@ if (isMockMode) {
           defaults = [
             {
               id: true,
-              biography: 'I am Saad Saeed, a passionate software developer specializing in AI integrations, autonomous agent pipelines, and high-performance React frontends.',
+              biography: 'Computer Science student specializing in AI automation, workflow orchestration, API integration, and Python scripting. Experienced in building automated pipelines with n8n, Make.com, Gemini AI, and REST APIs.',
               location: 'Lahore, Pakistan',
               education: [
-                { degree: 'BS Computer Science', school: 'FAST NUCES', year: '2020-2024' }
+                { degree: 'Bachelor of Science in Computer Science (BSCS)', school: 'The Superior University', year: '2023 - Present' }
               ],
               experience: [
-                { role: 'AI Integration Engineer', company: 'Saasify', year: '2024 - Present' }
+                { role: 'AI Automation & Workflow Developer', company: 'Freelance / Projects', year: '2023 - Present' }
               ],
               stats: [
-                { label: 'Projects Completed', value: '25+' },
-                { label: 'Workflows Automated', value: '50+' }
+                { label: 'Projects Completed', value: '10+' },
+                { label: 'Automations Built', value: '25+' },
+                { label: 'APIs Integrated', value: '15+' }
               ],
               updated_at: new Date().toISOString()
             }
@@ -139,42 +127,46 @@ if (isMockMode) {
           defaults = [
             {
               id: true,
-              email: 'saad@example.com',
-              whatsapp: '+923001234567',
+              email: 'm.saadsaeed7223@gmail.com',
+              whatsapp: '+92 300 4668808',
               location: 'Lahore, Pakistan',
               contact_description: 'Let\'s collaborate on building smart interfaces and automated pipelines. Drop me a line below.',
-              cta_text: 'Get in touch',
+              cta_text: 'Contact Me',
               updated_at: new Date().toISOString()
             }
           ];
         } else if (table === 'services') {
           defaults = [
-            { id: '1', title: 'AI Agents & Workflows', short_desc: 'Design autonomous pipelines connecting lead capturing systems to LLMs for auto-enrichment, qualification, and routing.', full_desc: 'Full details of custom AI Agent workflows...', icon_name: 'Cpu', is_published: true, is_featured: true, display_order: 0, updated_at: new Date().toISOString() },
-            { id: '2', title: 'React & Web Development', short_desc: 'Create fast, highly interactive user experiences styled with modern design tokens and cinematic page flow animations.', full_desc: 'Full details of React & Frontend development...', icon_name: 'Briefcase', is_published: true, is_featured: true, display_order: 1, updated_at: new Date().toISOString() },
+            { id: '1', title: 'Automation & AI', short_desc: 'n8n, Make.com, Gemini AI', full_desc: 'End-to-end automated pipelines and AI integrations.', icon_name: 'Cpu', is_published: true, is_featured: true, display_order: 0, updated_at: new Date().toISOString() },
+            { id: '2', title: 'APIs & Integration', short_desc: 'REST APIs, Webhooks, WhatsApp Business API, Postman', full_desc: 'Seamless integrations and webhook orchestration.', icon_name: 'Briefcase', is_published: true, is_featured: true, display_order: 1, updated_at: new Date().toISOString() },
+            { id: '3', title: 'Data & Web Scraping', short_desc: 'BeautifulSoup, JSON, CSV, Web Scraping', full_desc: 'Automated data extraction and structured data parsing.', icon_name: 'Terminal', is_published: true, is_featured: true, display_order: 2, updated_at: new Date().toISOString() },
           ];
         } else if (table === 'automations') {
           defaults = [
-            { id: '1', name: 'Lead Extraction Workflow', slug: 'lead-extraction', problem: 'Manual lead verification takes hours.', solution: 'LLM agents qualify and clean leads in seconds.', description: 'Automates data enrichment from webhooks.', ai_model: 'GPT-4o', result: '99% speedup.', demo_url: 'https://n8n.io', is_published: true, is_featured: true, updated_at: new Date().toISOString() },
+            { id: 'a1111111-1111-1111-1111-111111111111', name: 'AI-Powered Social Media Automation', slug: 'ai-powered-social-media-automation', problem: 'Manual content creation and cross-channel posting is tedious and slow.', solution: 'End-to-end automated pipeline to generate, format, schedule, and publish platform-specific content across multiple social media networks.', description: 'Make.com · Python · AI · REST APIs', ai_model: 'Gemini AI Engine', result: 'Automated cross-platform publishing & AI captions', demo_url: 'https://github.com/saadsaed', is_published: true, is_featured: true, updated_at: new Date().toISOString() },
+            { id: 'a2222222-2222-2222-2222-222222222222', name: 'AI-Driven WhatsApp Order & Lead Capture', slug: 'ai-driven-whatsapp-order-lead-capture', problem: 'Unstructured customer chat leads require manual sorting and data entry.', solution: 'Intelligent conversational capture system that parses unstructured customer messages into structured business data.', description: 'n8n · Gemini AI · WhatsApp Business API · CSV/JSON', ai_model: 'Gemini AI', result: 'Validated strict JSON & automated CSV sync', demo_url: 'https://github.com/saadsaed', is_published: true, is_featured: true, updated_at: new Date().toISOString() },
           ];
         } else if (table === 'technologies') {
           defaults = [
-            { id: '1', name: 'React', category: 'Frontend', description: 'Modern components and hook architectures.', url: 'https://react.dev', is_featured: true, display_order: 0 },
-            { id: '2', name: 'Supabase', category: 'Backend', description: 'BaaS for user management and SQL database.', url: 'https://supabase.com', is_featured: true, display_order: 1 },
-            { id: '3', name: 'Framer Motion', category: 'Frontend', description: 'Cinematic layout animations.', url: 'https://framer.com/motion', is_featured: false, display_order: 2 }
+            { id: '1', name: 'n8n', category: 'Automation & AI', description: 'Workflow orchestration engine.', url: 'https://n8n.io', is_featured: true, display_order: 0 },
+            { id: '2', name: 'Make.com', category: 'Automation & AI', description: 'Visual automation platform.', url: 'https://make.com', is_featured: true, display_order: 1 },
+            { id: '3', name: 'Gemini AI', category: 'Automation & AI', description: 'LLM prompt engine and structured extraction.', url: 'https://ai.google.dev', is_featured: true, display_order: 2 },
+            { id: '4', name: 'Python', category: 'Programming & Databases', description: 'Web scraping and custom automation scripts.', url: 'https://python.org', is_featured: true, display_order: 3 },
+            { id: '5', name: 'REST APIs', category: 'APIs & Integration', description: 'Webhooks and API communication.', url: 'https://postman.com', is_featured: true, display_order: 4 }
           ];
         } else if (table === 'process_steps') {
           defaults = [
-            { id: '1', title: 'Discovery & Plan', description: 'Analyze workflows and build the technical blueprint.', is_published: true, display_order: 0 },
+            { id: '1', title: 'Discovery & Plan', description: 'Analyze workflows and build technical blueprints.', is_published: true, display_order: 0 },
             { id: '2', title: 'Agile Implementation', description: 'Continuous integration of frontends and API hooks.', is_published: true, display_order: 1 }
           ];
         } else if (table === 'site_settings') {
           defaults = [
-            { id: true, site_name: 'Saad Saeed Portfolio', default_title: 'Saad Saeed | AI Developer', default_meta_description: 'Portfolio of Saad Saeed, specialized in React, next.js, n8n and AI integration.', announcement_text: 'Open for new contract roles!', announcement_active: true, availability_status: 'Available', updated_at: new Date().toISOString() }
+            { id: true, site_name: 'Saad Saeed Portfolio', default_title: 'Saad Saeed | AI Automation & Workflow Developer', default_meta_description: 'Portfolio of Saad Saeed, an AI Automation & Workflow Developer specializing in n8n, Make.com, Gemini AI, Python scripting, and API integrations.', announcement_text: 'Open for entry-level & internship roles!', announcement_active: true, availability_status: 'Available', updated_at: new Date().toISOString() }
           ];
         } else if (table === 'media') {
           defaults = [
             { id: '1', file_name: 'profile-picture.jpg', storage_path: 'uploads/profile-picture.jpg', mime_type: 'image/jpeg', alt_text: 'Saad Profile Picture', created_at: new Date().toISOString() },
-            { id: '2', file_name: 'resume.pdf', storage_path: 'documents/resume.pdf', mime_type: 'application/pdf', alt_text: 'Saad Saeed CV', created_at: new Date().toISOString() }
+            { id: '2', file_name: 'Saad_Saeed_CV.pdf', storage_path: 'documents/Saad_Saeed_CV.pdf', mime_type: 'application/pdf', alt_text: 'Saad Saeed CV', created_at: new Date().toISOString() }
           ];
         }
         localStorage.setItem(`mock_db_${table}`, JSON.stringify(defaults));

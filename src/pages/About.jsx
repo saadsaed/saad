@@ -1,13 +1,59 @@
 import { useState, useEffect } from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin, Award, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+
+const SKILL_CATEGORIES = [
+  {
+    category_name: "Automation & AI",
+    skills: ["n8n", "Make.com", "Gemini AI"]
+  },
+  {
+    category_name: "APIs & Integration",
+    skills: ["REST APIs", "Webhooks", "WhatsApp Business API", "Postman"]
+  },
+  {
+    category_name: "Programming & Databases",
+    skills: ["Python", "SQL"]
+  },
+  {
+    category_name: "Data & Web Scraping",
+    skills: ["BeautifulSoup", "JSON", "CSV", "Web Scraping"]
+  },
+  {
+    category_name: "Developer Tools & CMS",
+    skills: ["Git", "GitHub", "VS Code", "WordPress"]
+  }
+];
+
+const CERTIFICATIONS = [
+  {
+    name: "Google AI Essentials",
+    issuer: "Google",
+    display_format: "Badge / Verifiable Credential Card"
+  },
+  {
+    name: "Introduction to Agent Skills",
+    issuer: "Industry Credential",
+    display_format: "Badge / Verifiable Credential Card"
+  },
+  {
+    name: "Crash Course on Python",
+    issuer: "Online Certification",
+    display_format: "Badge / Verifiable Credential Card"
+  },
+  {
+    name: "AI Fundamentals",
+    issuer: "Foundational AI Credential",
+    display_format: "Badge / Verifiable Credential Card"
+  }
+];
 
 export default function About() {
   const [data, setData] = useState({
-    biography: 'Computer Science student with hands-on project experience in AI automation, workflow development, API integration, and Python scripting. Built end-to-end automation projects using Make.com, n8n, Gemini AI, WhatsApp Business API, and REST APIs. Experienced in web scraping, AI-based data extraction, content automation, and structured data handling. Seeking an entry-level or internship opportunity in AI Automation, Python Automation, or Workflow Automation.',
+    biography: 'Computer Science student specializing in AI automation, workflow orchestration, API integration, and Python scripting. Experienced in building automated pipelines with n8n, Make.com, Gemini AI, and REST APIs.',
     location: 'Lahore, Pakistan',
     education: [
-      { degree: 'BS Computer Science', school: 'THE SUPERIOR UNIVERSITY', year: '2023 – PRESENT' }
+      { degree: 'Bachelor of Science in Computer Science (BSCS)', school: 'The Superior University', year: '2023 - Present' }
     ],
     experience: [
       { role: 'AI Automation & Workflow Developer', company: 'Freelance / Projects', year: '2023 - Present' }
@@ -35,9 +81,17 @@ export default function About() {
           setData({
             biography: res.biography || '',
             location: res.location || '',
-            education: Array.isArray(res.education) ? res.education : [],
-            experience: Array.isArray(res.experience) ? res.experience : [],
-            stats: Array.isArray(res.stats) ? res.stats : []
+            education: Array.isArray(res.education) && res.education.length > 0 ? res.education : [
+              { degree: 'Bachelor of Science in Computer Science (BSCS)', school: 'The Superior University', year: '2023 - Present' }
+            ],
+            experience: Array.isArray(res.experience) && res.experience.length > 0 ? res.experience : [
+              { role: 'AI Automation & Workflow Developer', company: 'Freelance / Projects', year: '2023 - Present' }
+            ],
+            stats: Array.isArray(res.stats) && res.stats.length > 0 ? res.stats : [
+              { label: 'Projects Completed', value: '10+' },
+              { label: 'Automations Built', value: '25+' },
+              { label: 'APIs Integrated', value: '15+' }
+            ]
           });
         }
       } catch (err) {
@@ -87,59 +141,112 @@ export default function About() {
         </div>
       </div>
 
-      {/* 02 // Journey (Career Experience) */}
+      {/* 02 // Skills Section (Categorized Cards) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
         <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
-          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">02 / Journey</span>
-          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Experience</h2>
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">02 / Technical Skills</span>
+          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Categorized Cards</h2>
         </div>
-        <div className="lg:col-span-8 p-6 sm:p-12 flex flex-col divide-y divide-dashed divide-neutral-900/10">
-          {data.experience.length === 0 ? (
-            <div className="text-xs font-semibold text-neutral-400 uppercase">No career records configured.</div>
-          ) : (
-            data.experience.map((exp, idx) => (
-              <div key={idx} className="py-8 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                <div>
-                  <span className="text-[9px] font-bold text-neutral-450 uppercase tracking-wider">{exp.year}</span>
-                  <h4 className="text-md font-bold uppercase text-neutral-950 mt-1.5 tracking-tight">{exp.role}</h4>
-                  <p className="text-xs text-neutral-500 font-semibold uppercase mt-0.5 tracking-wider">{exp.company}</p>
+        <div className="lg:col-span-8 p-6 sm:p-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {SKILL_CATEGORIES.map((cat, idx) => (
+            <div key={idx} className="p-6 border border-neutral-900/10 bg-neutral-50/50 flex flex-col justify-between hover:border-neutral-900/30 transition-colors">
+              <div>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-450">0{idx + 1} / Category</span>
+                <h3 className="text-sm font-bold uppercase tracking-tight text-neutral-950 mt-1 mb-4">
+                  {cat.category_name}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {cat.skills.map((skill, sIdx) => (
+                    <span 
+                      key={sIdx}
+                      className="px-3 py-1.5 bg-white border border-neutral-200 text-neutral-900 text-xs font-semibold tracking-wide shadow-2xs hover:border-neutral-950 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-                
-                {/* Active/Past badge */}
-                <span className="px-3 py-1.5 border border-neutral-200 text-[9px] font-bold rounded-full uppercase tracking-wider text-neutral-600 self-start bg-neutral-50">
-                  {idx === 0 ? 'Active' : 'Past'}
-                </span>
               </div>
-            ))
-          )}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* 03 // Credentials (Education) */}
+      {/* 03 // Journey (Career Experience) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">03 / Journey</span>
+          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Experience</h2>
+        </div>
+        <div className="lg:col-span-8 p-6 sm:p-12 flex flex-col divide-y divide-dashed divide-neutral-900/10">
+          {data.experience.map((exp, idx) => (
+            <div key={idx} className="py-8 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+              <div>
+                <span className="text-[9px] font-bold text-neutral-450 uppercase tracking-wider">{exp.year}</span>
+                <h4 className="text-md font-bold uppercase text-neutral-950 mt-1.5 tracking-tight">{exp.role}</h4>
+                <p className="text-xs text-neutral-500 font-semibold uppercase mt-0.5 tracking-wider">{exp.company}</p>
+              </div>
+              
+              <span className="px-3 py-1.5 border border-neutral-200 text-[9px] font-bold rounded-full uppercase tracking-wider text-neutral-600 self-start bg-neutral-50">
+                {idx === 0 ? 'Active' : 'Past'}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 04 // Certifications Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
+        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">04 / Credentials</span>
+          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Certifications</h2>
+        </div>
+        <div className="lg:col-span-8 p-6 sm:p-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {CERTIFICATIONS.map((cert, idx) => (
+            <div key={idx} className="p-6 border border-neutral-900/10 bg-white flex flex-col justify-between hover:border-neutral-950 transition-colors group">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-1">
+                    <Award size={12} className="text-accent-600" />
+                    {cert.issuer}
+                  </span>
+                  <span className="px-2 py-0.5 border border-emerald-200 text-emerald-700 bg-emerald-50 text-[8px] font-bold uppercase tracking-wider flex items-center gap-1">
+                    <ShieldCheck size={10} />
+                    Verifiable
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold uppercase tracking-tight text-neutral-950 group-hover:text-accent-600 transition-colors">
+                  {cert.name}
+                </h3>
+              </div>
+              <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-[9px] font-bold text-neutral-450 uppercase tracking-widest">
+                <span>{cert.display_format}</span>
+                <CheckCircle2 size={12} className="text-emerald-500" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 05 // Education Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12">
         <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
-          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">03 / Education</span>
-          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Credentials</h2>
+          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">05 / Education</span>
+          <h2 className="text-lg font-bold uppercase mt-4 text-neutral-950 tracking-tight">Academics</h2>
         </div>
         <div className="lg:col-span-8 p-6 sm:p-12">
-          {data.education.length === 0 ? (
-            <div className="text-xs font-semibold text-neutral-400 uppercase">No education records found.</div>
-          ) : (
-            <div className="relative border-l border-neutral-900/10 ml-3 pl-8 flex flex-col gap-10 py-2">
-              {data.education.map((edu, idx) => (
-                <div key={idx} className="relative flex flex-col">
-                  {/* Timeline circular node */}
-                  <span className="absolute -left-[38px] top-1.5 w-3 h-3 rounded-full bg-neutral-950 border border-white" />
-                  
-                  <span className="text-[9px] font-bold text-neutral-450 uppercase tracking-wider">{edu.year}</span>
-                  <h4 className="text-md font-bold uppercase text-neutral-950 mt-1.5 tracking-tight">{edu.degree}</h4>
-                  <p className="text-xs text-neutral-500 font-semibold uppercase mt-0.5 tracking-wider">{edu.school}</p>
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="relative border-l border-neutral-900/10 ml-3 pl-8 flex flex-col gap-10 py-2">
+            {data.education.map((edu, idx) => (
+              <div key={idx} className="relative flex flex-col">
+                <span className="absolute -left-[38px] top-1.5 w-3 h-3 rounded-full bg-neutral-950 border border-white" />
+                <span className="text-[9px] font-bold text-neutral-450 uppercase tracking-wider">{edu.year}</span>
+                <h4 className="text-md font-bold uppercase text-neutral-950 mt-1.5 tracking-tight">{edu.degree}</h4>
+                <p className="text-xs text-neutral-500 font-semibold uppercase mt-0.5 tracking-wider">{edu.school}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
