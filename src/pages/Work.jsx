@@ -50,12 +50,12 @@ export default function Work() {
     <div className="w-full flex flex-col bg-white">
       {/* Title Header Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
-        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+        <div className="lg:col-span-4 p-5 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
           <span className="text-xs font-bold text-neutral-600 tracking-wider">Selected Works</span>
-          <h1 className="text-xl font-bold mt-3 text-neutral-950 tracking-tight">Case Studies</h1>
+          <h1 className="text-lg sm:text-xl font-bold mt-2 sm:mt-3 text-neutral-950 tracking-tight">Case Studies</h1>
         </div>
-        <div className="lg:col-span-8 p-6 sm:p-12 flex flex-col justify-center">
-          <p className="text-sm text-neutral-600 leading-relaxed max-w-xl">
+        <div className="lg:col-span-8 p-5 sm:p-12 flex flex-col justify-center">
+          <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-xl">
             Explore end-to-end automation pipelines, AI integrations, web scraping tools, and custom workflow architectures.
           </p>
         </div>
@@ -64,33 +64,33 @@ export default function Work() {
       {/* Projects List */}
       <div className="flex flex-col divide-y divide-neutral-900/10 border-b border-neutral-900/10">
         {DETAILED_PROJECTS.map((project) => (
-          <div key={project.id} className="p-6 sm:p-12 flex flex-col gap-6 bg-white hover:bg-neutral-50/30 transition-colors">
+          <div key={project.id} className="p-5 sm:p-12 flex flex-col gap-5 sm:gap-6 bg-white hover:bg-neutral-50/30 transition-colors">
             <div>
-              <div className="flex flex-wrap gap-2 mb-3">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3">
                 {project.tech_stack.map((tech, tIdx) => (
-                  <span key={tIdx} className="px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 rounded-md">
+                  <span key={tIdx} className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 rounded-md">
                     {tech}
                   </span>
                 ))}
               </div>
               
-              <h3 className="text-xl font-bold text-neutral-950 tracking-tight">
+              <h3 className="text-lg sm:text-xl font-bold text-neutral-950 tracking-tight">
                 {project.title}
               </h3>
               
-              <p className="text-sm text-neutral-600 mt-2.5 leading-relaxed font-medium">
+              <p className="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed font-medium">
                 {project.summary}
               </p>
             </div>
 
             {/* Key Features List */}
-            <div className="bg-neutral-50 border border-neutral-900/10 p-5 rounded-lg">
-              <span className="text-xs font-bold text-neutral-600 tracking-wider block mb-3">
+            <div className="bg-neutral-50 border border-neutral-900/10 p-4 sm:p-5 rounded-lg">
+              <span className="text-xs font-bold text-neutral-600 tracking-wider block mb-2.5 sm:mb-3">
                 Key Features & Architecture
               </span>
               <ul className="flex flex-col gap-2">
                 {project.key_features.map((feat, fIdx) => (
-                  <li key={fIdx} className="flex items-start gap-2.5 text-xs text-neutral-700 font-medium">
+                  <li key={fIdx} className="flex items-start gap-2 text-xs text-neutral-700 font-medium">
                     <span className="text-neutral-400 select-none">•</span>
                     <span>{feat}</span>
                   </li>
@@ -99,10 +99,10 @@ export default function Work() {
             </div>
 
             {/* Interactive Visual Workflow Diagram */}
-            <div className="border border-neutral-900/10 p-5 bg-neutral-950 text-white rounded-lg">
-              <div className="flex items-center justify-between mb-4 border-b border-neutral-800 pb-2">
+            <div className="border border-neutral-900/10 p-4 sm:p-5 bg-neutral-950 text-white rounded-lg">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4 border-b border-neutral-800 pb-2">
                 <span className="text-xs font-bold text-neutral-400 flex items-center gap-1.5 tracking-wide">
-                  <Workflow size={14} className="text-emerald-400" />
+                  <Workflow size={14} className="text-emerald-400 shrink-0" />
                   Workflow Execution Diagram
                 </span>
                 <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1.5">
@@ -111,17 +111,24 @@ export default function Work() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 sm:gap-3">
                 {project.workflow_steps.map((step, sIdx) => (
-                  <div key={sIdx} className="relative p-3 bg-neutral-900 border border-neutral-800 rounded-md flex flex-col justify-between">
-                    <span className="text-xs font-semibold text-neutral-500">Step 0{sIdx + 1}</span>
-                    <div className="mt-2">
-                      <div className="text-xs font-bold text-neutral-100 tracking-tight">{step.name}</div>
-                      <div className="text-xs text-emerald-400 font-medium mt-0.5">{step.sub}</div>
+                  <div key={sIdx} className="flex flex-col gap-2">
+                    <div className="relative p-3 bg-neutral-900 border border-neutral-800 rounded-md flex flex-col justify-between h-full">
+                      <span className="text-xs font-semibold text-neutral-500">Step 0{sIdx + 1}</span>
+                      <div className="mt-2">
+                        <div className="text-xs font-bold text-neutral-100 tracking-tight">{step.name}</div>
+                        <div className="text-xs text-emerald-400 font-medium mt-0.5">{step.sub}</div>
+                      </div>
+                      {sIdx < 3 && (
+                        <div className="hidden sm:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 text-neutral-600">
+                          →
+                        </div>
+                      )}
                     </div>
                     {sIdx < 3 && (
-                      <div className="hidden sm:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 text-neutral-600">
-                        →
+                      <div className="sm:hidden text-center text-emerald-500/70 text-xs">
+                        ↓
                       </div>
                     )}
                   </div>
@@ -130,7 +137,7 @@ export default function Work() {
             </div>
 
             {/* GitHub Link */}
-            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-neutral-100 pt-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 border-t border-neutral-100 pt-3.5 sm:pt-4">
               <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 Verified Production Pipeline

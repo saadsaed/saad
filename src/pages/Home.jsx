@@ -198,26 +198,26 @@ export default function Home() {
       </div>
 
       {/* Profile Overlap Info Area */}
-      <div className="relative px-6 sm:px-12 pb-12 border-b border-neutral-900/10">
+      <div className="relative px-4 sm:px-12 pb-8 sm:pb-12 border-b border-neutral-900/10">
         {/* Modern headshot framed with rounded-2xl borders and a subtle shadow against a dark theme background */}
-        <div className="relative -mt-16 sm:-mt-24 mb-6 inline-block">
-          <div className="p-1.5 rounded-2xl bg-neutral-950 shadow-md border border-neutral-800">
+        <div className="relative -mt-14 sm:-mt-24 mb-4 sm:mb-6 inline-block">
+          <div className="p-1 sm:p-1.5 rounded-2xl bg-neutral-950 shadow-md border border-neutral-800">
             <img 
               src={profilePic} 
-              className="w-32 h-32 sm:w-44 sm:h-44 rounded-2xl object-cover" 
+              className="w-28 h-28 sm:w-44 sm:h-44 rounded-2xl object-cover" 
               alt="Saad Saeed"
             />
           </div>
           {/* Online green indicator dot */}
-          <span className="absolute bottom-3 right-3 w-4 h-4 bg-emerald-500 rounded-full border-2 border-neutral-950 animate-pulse" />
+          <span className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-emerald-500 rounded-full border-2 border-neutral-950 animate-pulse" />
         </div>
         
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-6">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-950">
+            <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-neutral-950">
               Saad Saeed
             </h1>
-            <p className="text-sm font-semibold text-accent-600 mt-1.5 tracking-wide">
+            <p className="text-xs sm:text-sm font-semibold text-accent-600 mt-1 sm:mt-1.5 tracking-wide">
               AI Automation & Workflow Developer
             </p>
             <p className="text-xs text-neutral-600 font-medium mt-1 tracking-wider flex items-center gap-1">
@@ -225,33 +225,33 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Call-to-actions - Consolidated primary & secondary actions (Issue #11) */}
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-2">
+          {/* Call-to-actions - Mobile responsive buttons & social chips */}
+          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 w-full md:w-auto">
+            <div className="flex flex-wrap items-center gap-2">
               <a 
                 href="#projects" 
                 onClick={scrollToProjects}
-                className="px-5 py-2.5 bg-neutral-950 text-white hover:bg-neutral-900 text-xs font-semibold rounded-full transition-colors inline-flex items-center gap-1.5 shadow-xs"
+                className="flex-1 sm:flex-none justify-center px-4 sm:px-5 py-2.5 bg-neutral-950 text-white hover:bg-neutral-900 text-xs font-semibold rounded-full transition-colors inline-flex items-center gap-1.5 shadow-xs"
               >
                 View Projects
               </a>
               <a 
                 href="/Saad_Saeed_CV.pdf" 
                 download="Saad_Saeed_CV.pdf"
-                className="px-4 py-2.5 border border-neutral-300 hover:border-neutral-950 text-xs font-medium rounded-full transition-colors inline-flex items-center gap-1.5 text-neutral-900"
+                className="flex-1 sm:flex-none justify-center px-3.5 sm:px-4 py-2.5 border border-neutral-300 hover:border-neutral-950 text-xs font-medium rounded-full transition-colors inline-flex items-center gap-1.5 text-neutral-900"
               >
                 <Download size={14} />
                 Download CV
               </a>
               <Link 
                 to="/contact" 
-                className="px-4 py-2.5 border border-neutral-300 hover:border-neutral-950 text-xs font-medium rounded-full transition-colors inline-flex items-center gap-1.5 text-neutral-900"
+                className="flex-1 sm:flex-none justify-center px-3.5 sm:px-4 py-2.5 border border-neutral-300 hover:border-neutral-950 text-xs font-medium rounded-full transition-colors inline-flex items-center gap-1.5 text-neutral-900"
               >
                 Contact Me
               </Link>
             </div>
             {/* Separate visual group for social links */}
-            <div className="flex items-center gap-3 pl-2 border-l border-neutral-200">
+            <div className="flex items-center justify-start gap-3 pt-2 sm:pt-0 sm:pl-2 border-t sm:border-t-0 sm:border-l border-neutral-200">
               <a 
                 href="https://github.com/saadsaed" 
                 target="_blank" 
@@ -276,15 +276,15 @@ export default function Home() {
 
       {/* 01 // Introduction (About bio) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
-        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+        <div className="lg:col-span-4 p-5 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
           <span className="text-xs font-bold text-neutral-600 tracking-wider">01 / Introduction</span>
-          <h2 className="text-xl font-bold mt-3 text-neutral-950 tracking-tight">About Me</h2>
+          <h2 className="text-lg sm:text-xl font-bold mt-2 sm:mt-3 text-neutral-950 tracking-tight">About Me</h2>
         </div>
-        <div className="lg:col-span-8 p-6 sm:p-12 dot-grid flex flex-col gap-6">
-          <p className="text-xl sm:text-2xl font-bold text-neutral-950 leading-[1.25] tracking-tight max-w-2xl">
+        <div className="lg:col-span-8 p-5 sm:p-12 dot-grid flex flex-col gap-4 sm:gap-6">
+          <p className="text-lg sm:text-2xl font-bold text-neutral-950 leading-[1.3] sm:leading-[1.25] tracking-tight max-w-2xl">
             Computer Science student specializing in AI automation, workflow orchestration, API integration, and Python scripting.
           </p>
-          <p className="text-sm text-neutral-600 leading-relaxed max-w-2xl">
+          <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-2xl">
             Experienced in building automated pipelines with n8n, Make.com, Gemini AI, WhatsApp Business API, and REST APIs. Passionate about transforming manual processes into seamless autonomous workflows.
           </p>
         </div>
@@ -292,24 +292,23 @@ export default function Home() {
 
       {/* 02 // Skills & Technologies (Categorized Cards) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
-        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+        <div className="lg:col-span-4 p-5 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
           <span className="text-xs font-bold text-neutral-600 tracking-wider">02 / Technical Stack</span>
-          <h2 className="text-xl font-bold mt-3 text-neutral-950 tracking-tight">Skills & Capabilities</h2>
+          <h2 className="text-lg sm:text-xl font-bold mt-2 sm:mt-3 text-neutral-950 tracking-tight">Skills & Capabilities</h2>
         </div>
-        <div className="lg:col-span-8 p-6 sm:p-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="lg:col-span-8 p-5 sm:p-12 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {SKILL_CATEGORIES.map((cat, idx) => (
-            <div key={idx} className="p-6 border border-neutral-900/10 bg-neutral-50/50 rounded-lg flex flex-col justify-between hover:border-neutral-900/30 transition-colors">
+            <div key={idx} className="p-5 sm:p-6 border border-neutral-900/10 bg-neutral-50/50 rounded-lg flex flex-col justify-between hover:border-neutral-900/30 transition-colors">
               <div>
                 <span className="text-xs font-bold text-neutral-600 tracking-wider">0{idx + 1} / Category</span>
-                <h3 className="text-base font-bold text-neutral-950 mt-1 mb-4">
+                <h3 className="text-base font-bold text-neutral-950 mt-1 mb-3 sm:mb-4">
                   {cat.category_name}
                 </h3>
-                {/* Standardized gap-2 spacing & font-semibold (Issues #12 & #13) */}
                 <div className="flex flex-wrap gap-2">
                   {cat.skills.map((skill, sIdx) => (
                     <span 
                       key={sIdx}
-                      className="px-3 py-1.5 bg-white border border-neutral-200 text-neutral-900 text-xs font-semibold rounded-md tracking-wide shadow-2xs hover:border-neutral-950 transition-colors"
+                      className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-white border border-neutral-200 text-neutral-900 text-xs font-semibold rounded-md tracking-wide shadow-2xs hover:border-neutral-950 transition-colors"
                     >
                       {skill}
                     </span>
@@ -323,43 +322,42 @@ export default function Home() {
 
       {/* 03 // Projects Section */}
       <div id="projects" className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
-        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10 flex flex-col justify-between">
+        <div className="lg:col-span-4 p-5 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10 flex flex-col justify-between">
           <div>
             <span className="text-xs font-bold text-neutral-600 tracking-wider">03 / Selected Works</span>
-            <h2 className="text-xl font-bold mt-3 text-neutral-950 tracking-tight">Automation Projects</h2>
+            <h2 className="text-lg sm:text-xl font-bold mt-2 sm:mt-3 text-neutral-950 tracking-tight">Automation Projects</h2>
           </div>
         </div>
         
         <div className="lg:col-span-8 divide-y divide-neutral-900/10">
           {DETAILED_PROJECTS.map((project) => (
-            <div key={project.id} className="p-6 sm:p-12 flex flex-col gap-6 bg-white hover:bg-neutral-50/30 transition-colors">
+            <div key={project.id} className="p-5 sm:p-12 flex flex-col gap-5 sm:gap-6 bg-white hover:bg-neutral-50/30 transition-colors">
               <div>
-                {/* Standardized tech stack tags on all cards (Issue #20) */}
-                <div className="flex flex-wrap gap-2 mb-3">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3">
                   {project.tech_stack.map((tech, tIdx) => (
-                    <span key={tIdx} className="px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 rounded-md">
+                    <span key={tIdx} className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 rounded-md">
                       {tech}
                     </span>
                   ))}
                 </div>
                 
-                <h3 className="text-xl font-bold text-neutral-950 tracking-tight">
+                <h3 className="text-lg sm:text-xl font-bold text-neutral-950 tracking-tight">
                   {project.title}
                 </h3>
                 
-                <p className="text-sm text-neutral-600 mt-2.5 leading-relaxed font-medium">
+                <p className="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed font-medium">
                   {project.summary}
                 </p>
               </div>
 
               {/* Key Features List */}
-              <div className="bg-neutral-50 border border-neutral-900/10 p-5 rounded-lg">
-                <span className="text-xs font-bold text-neutral-600 tracking-wider block mb-3">
+              <div className="bg-neutral-50 border border-neutral-900/10 p-4 sm:p-5 rounded-lg">
+                <span className="text-xs font-bold text-neutral-600 tracking-wider block mb-2.5 sm:mb-3">
                   Key Deliverables & Architecture
                 </span>
                 <ul className="flex flex-col gap-2">
                   {project.key_features.map((feat, fIdx) => (
-                    <li key={fIdx} className="flex items-start gap-2.5 text-xs text-neutral-700 font-medium">
+                    <li key={fIdx} className="flex items-start gap-2 text-xs text-neutral-700 font-medium">
                       <span className="text-neutral-400 select-none">•</span>
                       <span>{feat}</span>
                     </li>
@@ -368,30 +366,36 @@ export default function Home() {
               </div>
 
               {/* Interactive Visual Workflow Diagram */}
-              <div className="border border-neutral-900/10 p-5 bg-neutral-950 text-white rounded-lg">
-                <div className="flex items-center justify-between mb-4 border-b border-neutral-800 pb-2">
+              <div className="border border-neutral-900/10 p-4 sm:p-5 bg-neutral-950 text-white rounded-lg">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4 border-b border-neutral-800 pb-2">
                   <span className="text-xs font-bold text-neutral-400 flex items-center gap-1.5 tracking-wide">
-                    <Workflow size={14} className="text-emerald-400" />
+                    <Workflow size={14} className="text-emerald-400 shrink-0" />
                     Workflow Architecture Diagram
                   </span>
-                  {/* Clean status indicator rather than button-mimicking pill (Issue #15) */}
                   <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     Live Execution Pipeline
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 sm:gap-3">
                   {project.workflow_steps.map((step, sIdx) => (
-                    <div key={sIdx} className="relative p-3 bg-neutral-900 border border-neutral-800 rounded-md flex flex-col justify-between">
-                      <span className="text-xs font-semibold text-neutral-500">Step 0{sIdx + 1}</span>
-                      <div className="mt-2">
-                        <div className="text-xs font-bold text-neutral-100 tracking-tight">{step.name}</div>
-                        <div className="text-xs text-emerald-400 font-medium mt-0.5">{step.sub}</div>
+                    <div key={sIdx} className="flex flex-col gap-2">
+                      <div className="relative p-3 bg-neutral-900 border border-neutral-800 rounded-md flex flex-col justify-between h-full">
+                        <span className="text-xs font-semibold text-neutral-500">Step 0{sIdx + 1}</span>
+                        <div className="mt-2">
+                          <div className="text-xs font-bold text-neutral-100 tracking-tight">{step.name}</div>
+                          <div className="text-xs text-emerald-400 font-medium mt-0.5">{step.sub}</div>
+                        </div>
+                        {sIdx < 3 && (
+                          <div className="hidden sm:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 text-neutral-600">
+                            →
+                          </div>
+                        )}
                       </div>
                       {sIdx < 3 && (
-                        <div className="hidden sm:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 text-neutral-600">
-                          →
+                        <div className="sm:hidden text-center text-emerald-500/70 text-xs">
+                          ↓
                         </div>
                       )}
                     </div>
@@ -399,8 +403,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* GitHub Link & Footer - Improved grouping (Issue #14) */}
-              <div className="flex flex-wrap items-center justify-between gap-4 border-t border-neutral-100 pt-4">
+              {/* GitHub Link & Footer */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 border-t border-neutral-100 pt-3.5 sm:pt-4">
                 <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   Verified Production Pipeline
@@ -419,8 +423,8 @@ export default function Home() {
             </div>
           ))}
 
-          {/* Relocated "View all projects" link to bottom of projects content column (Issue #17) */}
-          <div className="p-6 sm:p-12 bg-neutral-50/50 flex justify-end">
+          {/* "View all projects" link */}
+          <div className="p-5 sm:p-12 bg-neutral-50/50 flex justify-end">
             <Link 
               to="/work"
               className="group inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-950 hover:text-accent-600 transition-colors"
@@ -434,34 +438,31 @@ export default function Home() {
 
       {/* 04 // Certifications Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
-        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+        <div className="lg:col-span-4 p-5 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
           <span className="text-xs font-bold text-neutral-600 tracking-wider">04 / Verified Credentials</span>
-          <h2 className="text-xl font-bold mt-3 text-neutral-950 tracking-tight">Certifications</h2>
+          <h2 className="text-lg sm:text-xl font-bold mt-2 sm:mt-3 text-neutral-950 tracking-tight">Certifications</h2>
         </div>
-        <div className="lg:col-span-8 p-6 sm:p-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="lg:col-span-8 p-5 sm:p-12 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {CERTIFICATIONS.map((cert, idx) => (
-            <div key={idx} className="p-6 border border-neutral-900/10 bg-white rounded-lg flex flex-col justify-between hover:border-neutral-950 transition-colors group">
+            <div key={idx} className="p-5 sm:p-6 border border-neutral-900/10 bg-white rounded-lg flex flex-col justify-between hover:border-neutral-950 transition-colors group">
               <div>
-                {/* Min-height container for title baseline alignment (Issue #21) */}
                 <div className="min-h-[28px] flex items-center justify-between mb-3">
                   <span className="text-xs font-semibold text-neutral-500 flex items-center gap-1">
-                    <Award size={14} className="text-accent-600" />
+                    <Award size={14} className="text-accent-600 shrink-0" />
                     {cert.issuer}
                   </span>
-                  {/* Standardized badge design (Issue #22) */}
                   <span className="px-2.5 py-0.5 border border-emerald-200 text-emerald-700 bg-emerald-50 text-xs font-semibold rounded-full flex items-center gap-1">
-                    <ShieldCheck size={12} />
+                    <ShieldCheck size={12} className="shrink-0" />
                     Verifiable
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-neutral-950 group-hover:text-accent-600 transition-colors">
+                <h3 className="text-sm sm:text-base font-bold text-neutral-950 group-hover:text-accent-600 transition-colors">
                   {cert.name}
                 </h3>
               </div>
-              {/* Removed redundant "BADGE / VERIFIABLE CREDENTIAL CARD" text (Issue #16) */}
               <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-neutral-500">
                 <span>Verified Credential</span>
-                <CheckCircle2 size={14} className="text-emerald-500" />
+                <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
               </div>
             </div>
           ))}
@@ -470,12 +471,12 @@ export default function Home() {
 
       {/* 05 // Education Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12">
-        <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
+        <div className="lg:col-span-4 p-5 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
           <span className="text-xs font-bold text-neutral-600 tracking-wider">05 / Education</span>
-          <h2 className="text-xl font-bold mt-3 text-neutral-950 tracking-tight">Academics</h2>
+          <h2 className="text-lg sm:text-xl font-bold mt-2 sm:mt-3 text-neutral-950 tracking-tight">Academics</h2>
         </div>
-        <div className="lg:col-span-8 p-6 sm:p-12">
-          <div className="p-6 border border-neutral-900/10 bg-neutral-50/30 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="lg:col-span-8 p-5 sm:p-12">
+          <div className="p-5 sm:p-6 border border-neutral-900/10 bg-neutral-50/30 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
             <div>
               <span className="text-xs font-bold text-neutral-500 tracking-wider">2023 - Present</span>
               <h3 className="text-base font-bold text-neutral-950 mt-1">
@@ -485,7 +486,6 @@ export default function Home() {
                 The Superior University
               </p>
             </div>
-            {/* Standardized badge to match certification badge style (Issue #22) */}
             <span className="px-2.5 py-1 border border-neutral-200 text-xs font-semibold rounded-full text-neutral-700 bg-white self-start sm:self-auto">
               In Progress
             </span>
