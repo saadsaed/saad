@@ -51,11 +51,11 @@ export default function Work() {
       {/* Title Header Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
         <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
-          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">Selected Works</span>
-          <h1 className="text-xl font-bold uppercase mt-4 text-neutral-950 tracking-tight">Case Studies</h1>
+          <span className="text-xs font-bold text-neutral-600 tracking-wider">Selected Works</span>
+          <h1 className="text-xl font-bold mt-3 text-neutral-950 tracking-tight">Case Studies</h1>
         </div>
         <div className="lg:col-span-8 p-6 sm:p-12 flex flex-col justify-center">
-          <p className="text-sm text-neutral-500 leading-relaxed max-w-xl">
+          <p className="text-sm text-neutral-600 leading-relaxed max-w-xl">
             Explore end-to-end automation pipelines, AI integrations, web scraping tools, and custom workflow architectures.
           </p>
         </div>
@@ -68,13 +68,13 @@ export default function Work() {
             <div>
               <div className="flex flex-wrap gap-2 mb-3">
                 {project.tech_stack.map((tech, tIdx) => (
-                  <span key={tIdx} className="px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider bg-neutral-100 text-neutral-800 border border-neutral-200">
+                  <span key={tIdx} className="px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 rounded-md">
                     {tech}
                   </span>
                 ))}
               </div>
               
-              <h3 className="text-xl font-bold uppercase tracking-tight text-neutral-950">
+              <h3 className="text-xl font-bold text-neutral-950 tracking-tight">
                 {project.title}
               </h3>
               
@@ -84,8 +84,8 @@ export default function Work() {
             </div>
 
             {/* Key Features List */}
-            <div className="bg-neutral-50 border border-neutral-900/10 p-5">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-450 block mb-3">
+            <div className="bg-neutral-50 border border-neutral-900/10 p-5 rounded-lg">
+              <span className="text-xs font-bold text-neutral-600 tracking-wider block mb-3">
                 Key Features & Architecture
               </span>
               <ul className="flex flex-col gap-2">
@@ -99,24 +99,25 @@ export default function Work() {
             </div>
 
             {/* Interactive Visual Workflow Diagram */}
-            <div className="border border-neutral-900/10 p-5 bg-neutral-950 text-white">
+            <div className="border border-neutral-900/10 p-5 bg-neutral-950 text-white rounded-lg">
               <div className="flex items-center justify-between mb-4 border-b border-neutral-800 pb-2">
-                <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 flex items-center gap-1.5">
-                  <Workflow size={12} className="text-emerald-400" />
+                <span className="text-xs font-bold text-neutral-400 flex items-center gap-1.5 tracking-wide">
+                  <Workflow size={14} className="text-emerald-400" />
                   Workflow Execution Diagram
                 </span>
-                <span className="text-[9px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/60 px-2 py-0.5 border border-emerald-800">
+                <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   Live Execution Pipeline
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                 {project.workflow_steps.map((step, sIdx) => (
-                  <div key={sIdx} className="relative p-3 bg-neutral-900 border border-neutral-800 flex flex-col justify-between">
-                    <span className="text-[8px] font-bold text-neutral-500 uppercase tracking-widest">Step 0{sIdx + 1}</span>
+                  <div key={sIdx} className="relative p-3 bg-neutral-900 border border-neutral-800 rounded-md flex flex-col justify-between">
+                    <span className="text-xs font-semibold text-neutral-500">Step 0{sIdx + 1}</span>
                     <div className="mt-2">
-                      <div className="text-xs font-bold text-neutral-100 uppercase tracking-tight">{step.name}</div>
-                      <div className="text-[9px] text-emerald-400 font-medium mt-0.5 tracking-wider">{step.sub}</div>
+                      <div className="text-xs font-bold text-neutral-100 tracking-tight">{step.name}</div>
+                      <div className="text-xs text-emerald-400 font-medium mt-0.5">{step.sub}</div>
                     </div>
                     {sIdx < 3 && (
                       <div className="hidden sm:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 text-neutral-600">
@@ -129,8 +130,8 @@ export default function Work() {
             </div>
 
             {/* GitHub Link */}
-            <div className="flex justify-between items-center border-t border-neutral-100 pt-4">
-              <span className="text-[9px] font-bold text-emerald-600 uppercase tracking-widest flex items-center gap-1.5">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-neutral-100 pt-4">
+              <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 Verified Production Pipeline
               </span>
@@ -139,7 +140,7 @@ export default function Work() {
                 href={project.github_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-neutral-950 hover:text-accent-600 transition-colors"
+                className="group inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-950 hover:text-accent-600 transition-colors"
               >
                 GitHub Repository 
                 <ArrowUpRight size={14} className="arrow-hover-icon" />

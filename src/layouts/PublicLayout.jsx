@@ -59,7 +59,7 @@ export default function PublicLayout() {
                 className="relative p-[1px] overflow-hidden rounded-full group inline-block focus:outline-none"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-violet-500 via-amber-400 to-violet-500 rounded-full" />
-                <span className="relative block px-5 py-2 bg-neutral-950 text-white hover:bg-neutral-900 text-[10px] font-bold rounded-full uppercase tracking-wider transition-colors">
+                <span className="relative block px-5 py-2 bg-neutral-950 text-white hover:bg-neutral-900 text-xs font-semibold rounded-full uppercase tracking-wider transition-colors">
                   Get in touch
                 </span>
               </Link>
@@ -98,12 +98,12 @@ export default function PublicLayout() {
         <div className="divider-block" />
 
         {/* Public Footer */}
-        <footer className="py-12 bg-white px-6 sm:px-12 text-[11px] text-neutral-500 font-medium">
+        <footer className="py-12 bg-white px-6 sm:px-12 text-xs text-neutral-600 font-medium">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
               <span className="text-neutral-950 font-bold uppercase">&copy; {new Date().getFullYear()} SAAD SAEED.</span>
               <span className="hidden md:inline text-neutral-200">|</span>
-              <span className="flex items-center gap-1.5">
+              <span className="flex items-center gap-1.5 font-semibold">
                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full inline-block animate-pulse" />
                 AVAILABLE FOR NEW ROLES
               </span>

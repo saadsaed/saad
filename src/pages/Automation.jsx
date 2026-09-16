@@ -62,11 +62,11 @@ export default function Automation() {
       {/* Title Header Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
         <div className="lg:col-span-4 p-6 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
-          <span className="text-[10px] font-bold text-neutral-450 uppercase tracking-widest">AI Agents & n8n</span>
-          <h1 className="text-xl font-bold uppercase mt-4 text-neutral-950 tracking-tight">Automations</h1>
+          <span className="text-xs font-bold text-neutral-600 tracking-wider">AI Agents & n8n</span>
+          <h1 className="text-xl font-bold mt-3 text-neutral-950 tracking-tight">Automations</h1>
         </div>
         <div className="lg:col-span-8 p-6 sm:p-12 flex flex-col justify-center">
-          <p className="text-sm text-neutral-500 leading-relaxed max-w-xl">
+          <p className="text-sm text-neutral-600 leading-relaxed max-w-xl">
             Automating enterprise integrations, connecting CRM fields, webhooks, and custom vector search agents to custom frontends.
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function Automation() {
 
       {/* Automations Pipelines List */}
       {automations.length === 0 ? (
-        <div className="p-12 text-center text-xs font-semibold uppercase tracking-wider text-neutral-450">
+        <div className="p-12 text-center text-xs font-semibold text-neutral-500">
           No automation pipelines are currently active. Check back later!
         </div>
       ) : (
@@ -86,13 +86,13 @@ export default function Automation() {
             >
               <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-neutral-100 pb-4">
                 <div>
-                  <h3 className="text-md font-bold uppercase tracking-tight text-neutral-950">
+                  <h3 className="text-lg font-bold tracking-tight text-neutral-950">
                     {auto.name}
                   </h3>
                   <p className="text-xs text-neutral-500 mt-1 leading-relaxed">{auto.description}</p>
                 </div>
 
-                <div className="flex gap-2 text-[9px] font-bold uppercase tracking-wider">
+                <div className="flex gap-2 text-xs font-semibold">
                   {auto.trigger_type && (
                     <span className="px-2.5 py-1 bg-neutral-50 border border-neutral-200 text-neutral-600 rounded-full">
                       Trigger: {auto.trigger_type}
@@ -109,13 +109,13 @@ export default function Automation() {
               {/* Problem/Solution side-by-side splits */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-2">
                 <div className="flex flex-col gap-1.5">
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-red-500">The Problem</span>
+                  <span className="text-xs font-bold tracking-wider text-rose-600">The Problem</span>
                   <p className="text-xs text-neutral-600 leading-relaxed">
                     {auto.problem}
                   </p>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-emerald-600">The Automation</span>
+                  <span className="text-xs font-bold tracking-wider text-emerald-600">The Automation</span>
                   <p className="text-xs text-neutral-600 leading-relaxed">
                     {auto.solution}
                   </p>
@@ -123,11 +123,11 @@ export default function Automation() {
               </div>
 
               {/* Demo actions and results */}
-              <div className="flex justify-between items-center border-t border-neutral-100 pt-4 mt-2">
+              <div className="flex flex-wrap justify-between items-center border-t border-neutral-100 pt-4 mt-2 gap-4">
                 <div className="flex items-center gap-2 text-xs">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-800">
-                    Result: <span className="text-neutral-950 font-extrabold">{auto.result}</span>
+                  <span className="text-xs font-semibold text-neutral-800">
+                    Result: <span className="text-neutral-950 font-bold">{auto.result}</span>
                   </span>
                 </div>
 
@@ -136,7 +136,7 @@ export default function Automation() {
                     href={auto.demo_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="group inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-neutral-950 hover:opacity-80 transition-opacity"
+                    className="group inline-flex items-center gap-1 text-xs font-semibold text-neutral-950 hover:text-accent-600 transition-colors"
                   >
                     Watch Demo
                     <ArrowUpRight size={14} className="arrow-hover-icon" />
