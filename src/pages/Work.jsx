@@ -47,51 +47,51 @@ export default function Work() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="w-full flex flex-col bg-white">
+    <div className="w-full flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 transition-colors duration-200">
       {/* Title Header Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10">
-        <div className="lg:col-span-4 p-5 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10">
-          <span className="text-xs font-bold text-neutral-600 tracking-wider">Selected Works</span>
-          <h1 className="text-lg sm:text-xl font-bold mt-2 sm:mt-3 text-neutral-950 tracking-tight">Case Studies</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-neutral-900/10 dark:border-neutral-800">
+        <div className="lg:col-span-4 p-5 sm:p-12 border-b lg:border-b-0 lg:border-r border-neutral-900/10 dark:border-neutral-800">
+          <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 tracking-wider">Selected Works</span>
+          <h1 className="text-lg sm:text-xl font-bold mt-2 sm:mt-3 text-neutral-950 dark:text-white tracking-tight">Case Studies</h1>
         </div>
         <div className="lg:col-span-8 p-5 sm:p-12 flex flex-col justify-center">
-          <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-xl">
+          <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed max-w-xl">
             Explore end-to-end automation pipelines, AI integrations, web scraping tools, and custom workflow architectures.
           </p>
         </div>
       </div>
 
       {/* Projects List */}
-      <div className="flex flex-col divide-y divide-neutral-900/10 border-b border-neutral-900/10">
+      <div className="flex flex-col divide-y divide-neutral-900/10 dark:divide-neutral-800 border-b border-neutral-900/10 dark:border-neutral-800">
         {DETAILED_PROJECTS.map((project) => (
-          <div key={project.id} className="p-5 sm:p-12 flex flex-col gap-5 sm:gap-6 bg-white hover:bg-neutral-50/30 transition-colors">
+          <div key={project.id} className="p-5 sm:p-12 flex flex-col gap-5 sm:gap-6 bg-white dark:bg-neutral-950 hover:bg-neutral-50/30 dark:hover:bg-neutral-900/30 transition-colors">
             <div>
               <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3">
                 {project.tech_stack.map((tech, tIdx) => (
-                  <span key={tIdx} className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 rounded-md">
+                  <span key={tIdx} className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-semibold bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 rounded-md">
                     {tech}
                   </span>
                 ))}
               </div>
               
-              <h3 className="text-lg sm:text-xl font-bold text-neutral-950 tracking-tight">
+              <h3 className="text-lg sm:text-xl font-bold text-neutral-950 dark:text-white tracking-tight">
                 {project.title}
               </h3>
               
-              <p className="text-xs sm:text-sm text-neutral-600 mt-2 leading-relaxed font-medium">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 mt-2 leading-relaxed font-medium">
                 {project.summary}
               </p>
             </div>
 
             {/* Key Features List */}
-            <div className="bg-neutral-50 border border-neutral-900/10 p-4 sm:p-5 rounded-lg">
-              <span className="text-xs font-bold text-neutral-600 tracking-wider block mb-2.5 sm:mb-3">
+            <div className="bg-neutral-50 dark:bg-neutral-900/60 border border-neutral-900/10 dark:border-neutral-800 p-4 sm:p-5 rounded-lg">
+              <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 tracking-wider block mb-2.5 sm:mb-3">
                 Key Features & Architecture
               </span>
               <ul className="flex flex-col gap-2">
                 {project.key_features.map((feat, fIdx) => (
-                  <li key={fIdx} className="flex items-start gap-2 text-xs text-neutral-700 font-medium">
-                    <span className="text-neutral-400 select-none">•</span>
+                  <li key={fIdx} className="flex items-start gap-2 text-xs text-neutral-700 dark:text-neutral-300 font-medium">
+                    <span className="text-neutral-400 dark:text-neutral-600 select-none">•</span>
                     <span>{feat}</span>
                   </li>
                 ))}
@@ -99,7 +99,7 @@ export default function Work() {
             </div>
 
             {/* Interactive Visual Workflow Diagram */}
-            <div className="border border-neutral-900/10 p-4 sm:p-5 bg-neutral-950 text-white rounded-lg">
+            <div className="border border-neutral-900/10 dark:border-neutral-800 p-4 sm:p-5 bg-neutral-950 text-white rounded-lg">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4 border-b border-neutral-800 pb-2">
                 <span className="text-xs font-bold text-neutral-400 flex items-center gap-1.5 tracking-wide">
                   <Workflow size={14} className="text-emerald-400 shrink-0" />
@@ -137,8 +137,8 @@ export default function Work() {
             </div>
 
             {/* GitHub Link */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 border-t border-neutral-100 pt-3.5 sm:pt-4">
-              <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1.5">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 border-t border-neutral-100 dark:border-neutral-800 pt-3.5 sm:pt-4">
+              <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 Verified Production Pipeline
               </span>
@@ -147,7 +147,7 @@ export default function Work() {
                 href={project.github_url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-950 hover:text-accent-600 transition-colors"
+                className="group inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-950 dark:text-neutral-100 hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
               >
                 GitHub Repository 
                 <ArrowUpRight size={14} className="arrow-hover-icon" />
